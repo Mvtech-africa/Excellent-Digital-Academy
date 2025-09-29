@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Excellent Ict Academy</title>
+    <link rel="icon" href="images/ede.png" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
+    />
+  </head>
+  <body>
+    <!-- ------------------------------Header Section ------------------------------------- -->
+
+    <header>
+      <div class="header-main-con container-1">
+        <a class="logo" href="">
+          <img src="images/ede.png" alt="" />
+          <h3>Excellent Ict Academy</h3>
+        </a>
+
+        <ul id="popup-menu" class="popup-menu">
+          <label id="close-menu" class="close-menu">
+            <i class="uil uil-multiply icon close-icon"></i>
+          </label>
+
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+
+          <!-- ---------Drop Down 1--------------------- -->
+          <div class="dropdown-hover">
+            <ul class="dropdown-btn">
+              <li><a href="#">Services</a></li>
+              <span class="drop-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="none"
+                    stroke="#1d51d8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m6 9l6 6l6-6"
+                  />
+                </svg>
+              </span>
+            </ul>
+
+            <ul class="dropdown-container">
+              <li><a href="#">Link 1</a></li>
+              <li><a href="#">Link 2</a></li>
+              <li><a href="#">Link 3</a></li>
+              <li><a href="#">Link 4</a></li>
+            </ul>
+          </div>
+          <!-- --------------------------------- -->
+
+          <!-- ---------Drop Down 1--------------------- -->
+          <div class="dropdown-hover">
+            <ul class="dropdown-btn">
+              <li><a href="#">Register</a></li>
+              <span class="drop-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="none"
+                    stroke="#1d51d8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m6 9l6 6l6-6"
+                  />
+                </svg>
+              </span>
+            </ul>
+
+            <ul class="dropdown-container">
+              <li><a href="#">Link 1</a></li>
+              <li><a href="#">Link 2</a></li>
+              <li><a href="#">Link 3</a></li>
+              <li><a href="#">Link 4</a></li>
+            </ul>
+          </div>
+          <!-- --------------------------------- -->
+
+          <div class="h-btn-main-con">
+            <!-- <a href="">
+                            <div class="header-btn1">
+                                Sign Up
+                            </div>
+                        </a> -->
+
+            <a href="">
+              <div class="header-btn2">Log In</div>
+            </a>
+          </div>
+        </ul>
+
+        <div class="sub-btn-main-con">
+          <!-- <div class="sub-btn-con">
+
+                    <a href="">
+                        <div class="sub-btn-1">
+                            <i class="uil uil-heart"></i>
+                            <div class="count">2</div>
+                        </div>
+                    </a>
+
+
+                    <a href="">
+                        <div class="sub-btn-1">
+                            <i class="uil uil-shopping-cart-alt"></i>
+                            <div class="count">2</div>
+                        </div>
+                    </a>
+
+                </div> -->
+
+          <label id="menu-toggle" class="menu-icon">
+            <i class="uil uil-bars icon visible" id="open-icon"></i>
+            <i class="uil uil-multiply icon" id="close-icon"></i>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <div class="header-bg"></div>
+
+
+    
+    <!-- ------------------------------Hero Section ------------------------------------- -->
+
+    <section class="hero" id="hero">
+      <div class="slides" id="slides">
+        <!-- Slide 1 -->
+        <div class="slide">
+          <img src="images/photo_2025-09-29_13-59-21.jpg" alt="" />
+          <div class="overlay"></div>
+          <div class="content">
+            <h1>Welcome to MVtech</h1>
+            <p>Build modern UIs, learn fast, and ship confidently.</p>
+            <a class="btn" href="#">Get Started</a>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+          <img src="images/photo_2025-09-29_13-59-16.jpg" alt="" />
+          <div class="overlay"></div>
+          <div class="content">
+            <h1>Learn & Build</h1>
+            <p>Hands-on tutorials and real projects to level up.</p>
+            <a class="btn" href="#">See Courses</a>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+          <img src="images/photo_2025-09-29_13-59-12.jpg" alt="" />
+          <div class="overlay"></div>
+          <div class="content">
+            <h1>Join Our Community</h1>
+            <p>Collaborate, get feedback, and grow with MVtech.</p>
+            <a class="btn" href="#">Sign Up</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <button class="arrow prev" id="prev">&#10094;</button>
+      <button class="arrow next" id="next">&#10095;</button>
+
+      <!-- Dots -->
+      <div class="dots" id="dots"></div>
+    </section>
+
+    <script src="main.js"></script>
+  </body>
+</html>

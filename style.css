@@ -1,0 +1,783 @@
+:root {
+  /*------------------- PROJECT COLOR ROOT----------------------*/
+
+  --primary-color-50: #eff6ff;
+  --primary-color-100: #dbebfe;
+  --primary-color-200: #bfdcfe;
+  --primary-color-300: #93c7fd;
+  --primary-color-400: #60a8fa;
+
+  /* ---------primary main color----------- */
+  --origin-primary-color-500: #317ff5;
+
+  --primary-color-600: #2667ea;
+  --primary-color-700: #1d51d8;
+  --primary-color-800: #1e43af;
+  --primary-color-900: #1e3c8a;
+  --primary-color-950: #172654;
+
+  --secondary-color-50: #fffcea;
+  --secondary-color-100: #fff5c5;
+  --secondary-color-200: #ffeb85;
+  --secondary-color-300: #ffda46;
+  --secondary-color-400: #ffc71b;
+
+  /* ---------secondary main color----------- */
+  --origin-secondary-color-500: #ffa500;
+
+  --secondary-color-600: #e27c00;
+  --secondary-color-700: #bb5502;
+  --secondary-color-800: #984208;
+  --secondary-color-900: #7c360b;
+  --secondary-color-950: #481a00;
+
+  --grey-bg-color: #f4f4f4;
+  --main-bg-color: #ffffff;
+  --border-color: #f7f7f7;
+  --black--color: #171717;
+  --white-color: #ffffff;
+
+  --text-color-8: #171717;
+  --text-color-7: #2e2e2e;
+  --text-color-6: #2e2e2e;
+  --text-color-5: #757575;
+  --text-color-4: #a0a0a0;
+  --text-color-3: #efefef;
+  --text-color-2: #f3eeee;
+  --text-color-1: #ffffff;
+
+  /*------------------- GENERAL COLOR ROOT----------------------*/
+
+  --system-bg: #2c2c2c;
+  --system-bg-950: #2c2c2c;
+  --system-bg-900: #3d3d3d;
+  --system-bg-800: #454545;
+  --system-bg-700: #4f4f4f;
+  --system-bg-600: #ffffff;
+  --system-bg-500: #ffffff;
+  --system-bg-400: #ffffff;
+  --system-bg-300: #ffffff;
+  --system-bg-200: #ffffff;
+  --system-bg-100: #ffffff;
+  --system-bg-50: #ffffff;
+
+  --transparent-white: #ffffffe6;
+  --transparent-white-900: #ffffffc8;
+  --transparent-white-800: #ffffffb3;
+  --transparent-white-700: #ffffff8b;
+  --transparent-white-600: #ffffff6d;
+  --transparent-white-500: #ffffff66;
+  --transparent-white-400: #ffffff4b;
+  --transparent-white-300: #ffffff2c;
+  --transparent-white-200: #ffffff18;
+  --transparent-white-100: #ffffff0f;
+  --transparent-white-50: #ffffff05;
+
+  --grey: #d9d9d9;
+  --grey-950: #363636;
+  --grey-900: #545454;
+  --grey-800: #676767;
+  --grey-700: #7b7b7b;
+  --grey-600: #888888;
+  --grey-500: #999999;
+  --grey-400: #adadad;
+  --grey-300: #c8c8c8;
+  --grey-200: #d9d9d9;
+  --grey-100: #ededed;
+  --grey-50: #f7f7f7;
+
+  --brown: #633102;
+  --brown-950: #633102;
+  --brown-900: #78450b;
+  --brown-800: #8e5505;
+  --brown-700: #ad6d00;
+  --brown-600: #d99a00;
+  --brown-500: #fbc900;
+  --brown-400: #ffe304;
+  --brown-300: #fff339;
+  --brown-200: #fffd81;
+  --brown-100: #feffbf;
+  --brown-50: #fffee6;
+
+  --red: #b01a1a;
+  --red-950: #450a0a;
+  --red-900: #7f1d1d;
+  --red-800: #991b1b;
+  --red-700: #b01a1a;
+  --red-600: #dd2525;
+  --red-500: #f04343;
+  --red-400: #f97070;
+  --red-300: #fca5a5;
+  --red-200: #fecaca;
+  --red-100: #fee2e2;
+  --red-50: #fef2f2;
+
+  --pink: #d21856;
+  --pink-950: #51061e;
+  --pink-900: #84173a;
+  --pink-800: #9f1542;
+  --pink-700: #d21856;
+  --pink-600: #dd2568;
+  --pink-500: #ee468b;
+  --pink-400: #f670ab;
+  --pink-300: #faa7cd;
+  --pink-200: #fccee4;
+  --pink-100: #fce7f1;
+  --pink-50: #fdf2f7;
+
+  --yellow: #f7c94b;
+  --yellow-950: #431905;
+  --yellow-900: #753312;
+  --yellow-800: #8e3d12;
+  --yellow-700: #af4f0e;
+  --yellow-600: #d3700c;
+  --yellow-500: #ef9511;
+  --yellow-400: #f5b52a;
+  --yellow-300: #f7c94b;
+  --yellow-200: #fae08d;
+  --yellow-100: #fdf0c8;
+  --yellow-50: #fefaec;
+
+  --purple: #7e09d7;
+  --purple-950: #410071;
+  --purple-900: #5f0d96;
+  --purple-800: #730ebb;
+  --purple-700: #7e09d7;
+  --purple-600: #9c19ff;
+  --purple-500: #af3eff;
+  --purple-400: #c573ff;
+  --purple-300: #dbaaff;
+  --purple-200: #ebcfff;
+  --purple-100: #f4e5ff;
+  --purple-50: #faf4ff;
+
+  --green: #00bf8e;
+  --green-950: #003028;
+  --green-900: #005544;
+  --green-800: #006752;
+  --green-700: #008366;
+  --green-600: #00a47a;
+  --green-500: #00bf8e;
+  --green-400: #25e2ab;
+  --green-300: #63f2c4;
+  --green-200: #a0fad8;
+  --green-100: #cdfee9;
+  --green-50: #eafff7;
+
+  --orange: #ef810c;
+  --orange-950: #441304;
+  --orange-900: #772910;
+  --orange-800: #91310f;
+  --orange-700: #b2400b;
+  --orange-600: #d76008;
+  --orange-500: #ef810c;
+  --orange-400: #f9a626;
+  --orange-300: #fabf4f;
+  --orange-200: #fcd88b;
+  --orange-100: #fdedc8;
+  --orange-50: #fff9eb;
+
+  --blue: #1463f3;
+  --blue-950: #142757;
+  --blue-900: #193d8f;
+  --blue-800: #1843b5;
+  --blue-700: #1552e0;
+  --blue-600: #1463f3;
+  --blue-500: #3388fe;
+  --blue-400: #59abff;
+  --blue-300: #8ecaff;
+  --blue-200: #bcdeff;
+  --blue-100: #daecff;
+  --blue-50: #eef7ff;
+
+  --mint: #00a4a1;
+  --mint-950: #003234;
+  --mint-900: #0c5555;
+  --mint-800: #086767;
+  --mint-700: #028381;
+  --mint-600: #00a4a1;
+  --mint-500: #00c7be;
+  --mint-400: #19e8db;
+  --mint-300: #4dfbeb;
+  --mint-200: #8efff2;
+  --mint-100: #c6fff8;
+  --mint-50: #eefffc;
+
+  --cyan: #209cd7;
+  --cyan-950: #0d2d44;
+  --cyan-900: #144766;
+  --cyan-800: #11557b;
+  --cyan-700: #106494;
+  --cyan-600: #127db7;
+  --cyan-500: #209cd7;
+  --cyan-400: #32ade6;
+  --cyan-300: #87cef2;
+  --cyan-200: #bfe3f8;
+  --cyan-100: #e2f2fc;
+  --cyan-50: #f1f9fe;
+
+  --teal: #249eb6;
+  --teal-950: #112e3b;
+  --teal-900: #214858;
+  --teal-800: #235667;
+  --teal-700: #21677d;
+  --teal-600: #20809a;
+  --teal-500: #249eb6;
+  --teal-400: #30b0c7;
+  --teal-300: #7cd6e4;
+  --teal-200: #b1e8f0;
+  --teal-100: #d6f3f7;
+  --teal-50: #effcfc;
+
+  --indigo: #7178e3;
+  --indigo-950: #202046;
+  --indigo-900: #363779;
+  --indigo-800: #3d3b98;
+  --indigo-700: #4a46bc;
+  --indigo-600: #5856d6;
+  --indigo-500: #7178e3;
+  --indigo-400: #8c99ed;
+  --indigo-300: #adbcf4;
+  --indigo-200: #ccd7f9;
+  --indigo-100: #e3eafc;
+  --indigo-50: #f0f4fd;
+
+  /*------------------- END COLOR ROOT----------------------*/
+
+  /*------------------- FONT SIZE ROOT----------------------*/
+  /* 
+--font-170: 10.625rem;
+--font-120: 7.5rem;
+--font-100: 6.25rem;
+--font-70: 4.375rem;
+--font-50: 3.125rem;
+--font-60: 3.75rem;
+--font-40: 2.5rem;
+--font-32: 2rem;
+--font-28: 1.75rem;
+--font-24: 1.5rem;
+--font-20: 1.25rem;
+--font-18: 1.125rem;
+--font-17: 1.0625rem;
+--font-16: 1rem;
+--font-14: 0.875rem;
+--font-13: 0.712;
+--font-12: 0.75rem;
+--font-11: 0.6875rem;
+--font-10: 0.625rem;
+--font-9: 0.5625rem;
+--font-8: 0.5rem; */
+
+  /* Example conversions: You can tweak min and preferred values as needed */
+
+  --font-170: clamp(2.6rem, 13.2vw, 10.625rem);
+  --font-120: clamp(2.5rem, 9.3vw, 7.5rem);
+  --font-100: clamp(2.4rem, 7.8vw, 6.25rem);
+  --font-70: clamp(2.3rem, 5.5vw, 4.375rem);
+  --font-60: clamp(2.2rem, 4.7vw, 3.75rem);
+  --font-50: clamp(2.1rem, 3.9vw, 3.125rem);
+  --font-40: clamp(2rem, 3.1vw, 2.5rem);
+  --font-32: clamp(1.9rem, 2.5vw, 2rem);
+  --font-28: clamp(1.75rem, 2.2vw, 1.75rem);
+  --font-24: clamp(1.5rem, 1.9vw, 1.5rem);
+  --font-20: clamp(1.25rem, 1.6vw, 1.25rem);
+  --font-18: clamp(1.125rem, 1.4vw, 1.125rem);
+  --font-17: clamp(1.0625rem, 1.3vw, 1.0625rem);
+  --font-16: clamp(1rem, 1.3vw, 1rem);
+  --font-15: clamp(0.9375rem, 1.3vw, 0.9375rem);
+  --font-14: clamp(0.875rem, 1.1vw, 0.875rem);
+  --font-13: clamp(0.5rem, 1vw, 0.75rem);
+  --font-12: clamp(0.5rem, 0.9vw, 0.712rem); /* Adjusted for consistency */
+  --font-11: clamp(0.5rem, 0.9vw, 0.6875rem);
+  --font-10: clamp(0.5rem, 0.8vw, 0.625rem);
+  --font-9: clamp(0.5rem, 0.7vw, 0.5625rem);
+  --font-8: clamp(0.5rem, 0.7vw, 0.5rem);
+}
+
+/* ----------------------------- general styling -------------------------- */
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--text-color-8);
+  /* font-family: Arial, Helvetica, sans-serif; */
+  /* font-family: "Inter", sans-serif; */
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  height: 500vh;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+  color: var(--text-color-8);
+}
+
+.container-1 {
+  width: 90%;
+  max-width: 90%;
+  margin-inline: auto;
+}
+
+.container-2 {
+  width: 80%;
+  max-width: 80%;
+  margin-inline: auto;
+}
+
+p {
+  font-size: var(--font-16);
+  line-height: 170%;
+}
+
+small {
+  line-height: 170%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 170%;
+}
+
+/* -------------------- Header styling -------------------------- */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 60px;
+  background-color: var(--grey-bg-color);
+  z-index: 100;
+}
+
+.header-bg {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 60px;
+  backdrop-filter: blur(50px);
+}
+
+.header-bg.scrolled {
+  /* box-shadow: 0 10px 10px rgba(15, 87, 241, 0.282); */
+  background-color: rgba(42, 108, 250, 0.232);
+  /* background-color: rgba(255, 255, 255, 0.8);  */
+  transition: background-color 0.3s ease;
+  backdrop-filter: blur(50px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+.logo h3 {
+  font-size: var(--font-18);
+  font-weight: 700;
+  color: var(--primary-color-800);
+}
+
+.header-main-con {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+}
+
+.popup-menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.popup-menu li a {
+  font-size: var(--font-14);
+  font-weight: 600;
+  color: var(--primary-color-700);
+}
+
+.pop-up-main-con {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.h-btn-main-con {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-btn1 {
+  padding: 8px 18px;
+  color: var(--primary-color-700);
+  border-radius: 30px;
+  border: 2px solid var(--primary-color-700);
+  font-weight: 600;
+}
+
+.header-btn2 {
+  padding: 8px 20px;
+  background-color: var(--primary-color-700);
+  color: var(--white-color);
+  border-radius: 30px;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------- */
+
+.dropdown-btn {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.dropdown-btn li a {
+  font-size: var(--font-14);
+}
+
+/* ------------------------------------------------------- */
+
+.sub-btn-main-con {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  display: none;
+}
+
+.sub-btn-con {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.sub-btn-con i {
+  font-size: var(--font-24);
+}
+
+.sub-btn-1 {
+  position: relative;
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -5px;
+  right: -7px;
+  background-color: var(--red-600);
+  color: var(--text-color-1);
+  width: 13px;
+  height: 13px;
+  border-radius: 100px;
+  font-size: 10px;
+}
+
+.menu-icon {
+  display: none;
+}
+
+.close-menu {
+  display: none;
+}
+
+.dropdown-hover {
+  position: relative;
+}
+
+.dropdown-container {
+  position: absolute;
+  display: none;
+  top: 40px;
+  left: -70px;
+  background-color: var(--primary-color-600);
+  width: 200px;
+  padding: 10px 10px 10px 10px;
+  transition: 0.3s ease;
+}
+
+/* 
+.dropdown-hover:hover .dropdown-container {
+    display: block;
+} */
+
+.drop-icon {
+  transition: 0.3s ease;
+}
+
+.dropdown-container li {
+  padding: 14px 20px;
+}
+
+.dropdown-container li a {
+  color: white;
+}
+
+/* ----------------------------- hero styling ------------------------- */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* SLIDES TRACK */
+.slides {
+  display: flex;
+  height: 100%;
+  transition: transform 0.7s ease-in-out;
+  will-change: transform;
+}
+
+/* EACH SLIDE */
+.slide {
+  flex: 0 0 100%; /* each slide takes full width */
+  height: 100%;
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+}
+
+.content h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+.content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: #fff;
+  color: #111;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.btn:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* ARROWS */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+}
+
+.arrow.prev {
+  left: 20px;
+}
+.arrow.next {
+  right: 20px;
+}
+
+/* DOTS */
+.dots {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: 0;
+  cursor: pointer;
+}
+.dot.active {
+  background: #fff;
+}
+
+/* ----------------------------- Tablet screen size -------------------- */
+
+@media screen and (max-width: 1024px) {
+  /* --------------------- Header styling ------------------------------- */
+
+  .popup-menu {
+    position: fixed;
+    align-items: normal;
+    top: 0;
+    right: -400px;
+    flex-direction: column;
+    gap: 0;
+    width: 400px;
+    backdrop-filter: blur(50px);
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    transition: 1s ease;
+    overflow-y: auto;
+    height: 100%;
+    z-index: 100;
+  }
+
+  .popup-menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .popup-menu li {
+    padding: 14px 20px;
+    width: 100%;
+  }
+
+  .h-btn-main-con {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+    margin: 100px 0 0 20px;
+  }
+
+  .header-btn1,
+  .header-btn2 {
+    width: fit-content;
+  }
+
+  .dropdown-btn {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    align-items: center;
+    transition: 1s ease;
+  }
+
+  .dropdown-container {
+    position: static;
+    display: none;
+    transition: 1s ease;
+    background-color: var(--primary-color-600);
+    padding-left: 10px;
+    width: 100%;
+  }
+
+  .dropdown-btn li a {
+    font-size: var(--font-14);
+  }
+
+  /* ------------------------------------------------------- */
+
+  .sub-btn-main-con {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .close-menu {
+    display: block;
+  }
+
+  .icon {
+    display: none;
+    font-size: 22px;
+    transition: 1s ease;
+    color: var(--primary-color-900);
+  }
+
+  .close-icon {
+    display: block;
+    padding: 30px 0 30px 20px;
+  }
+
+  /* ------------------------------------------------ */
+
+  .icon.visible {
+    display: block;
+  }
+
+  .popup-menu.open {
+    right: 0; /* Slide in */
+  }
+
+  .drop-icon {
+    transition: 0.3s ease;
+    margin-right: 20px;
+  }
+
+  .rotate2 {
+    transform: rotate(-180deg);
+  }
+}
+
+/* ----------------------------- Mobile screen size -------------------- */
+
+@media screen and (max-width: 768px) {
+}
+
+/* --------------------------- TABLET SCREEN SIZE  --------------------------------------- */
+
+@media screen and (max-width: 1024px) {
+}
+
+/* --------------------------- MOBILE SCREEN SIZE  --------------------------------------- */
+
+@media screen and (max-width: 768px) {
+}
