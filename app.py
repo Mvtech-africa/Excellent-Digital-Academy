@@ -17,7 +17,6 @@ class User(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     first_name: Mapped[str] = mapped_column(String(50), nullable=False)
     last_name: Mapped[str] = mapped_column(String(50), nullable=False)
-    username: Mapped[str] = mapped_column(String(80), unique=True, nullable=False)
     email: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
     password: Mapped[str] = mapped_column(String(200), nullable=False)
     phone: Mapped[str] = mapped_column(String(20), nullable=True)
@@ -30,8 +29,23 @@ class User(db.Model):
 def index():
     return render_template('index.html')
 
-@app.route('/signup')
+@app.route('/users')
+def users():
+    users = db.session.execute(db.select(User).order_by(User.id)).scalars()
+    return render_template("user.html", users=users)
+
+@app.route('/signup', methods=["GET", "POST"])
 def signup():
+    if request.method == "POST":
+        first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        phone = request.form.get("phone")
+        new_user = User(first_name=first_name, last_name=last_name, email=email, password=password, phone=phone)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for("users"))   
     return render_template('signup.html')
 
 @app.route('/signIn')
