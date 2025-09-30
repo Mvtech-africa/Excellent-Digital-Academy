@@ -20,9 +20,12 @@
     <section class="form remove-margin">
 
         <div class="form-main-con">
-            <div class="message error">
-                <p>This is an error message</p>
-            </div>
+        {% if message %}
+        <div class="message success">
+            
+            <p>This is an error message</p>
+        </div>
+        {% endif %}
 
 
             <h3>Login</h3>
