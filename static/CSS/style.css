@@ -718,8 +718,30 @@ header {
 }
 
 
+.h-btn-1 {
+  height: 45px;
+  display: flex;
+  align-items: center;
+}
 
 
+
+.h-btn-2 {
+  height: 45px;
+  align-items: center;
+  display: flex;
+}
+
+
+.h-btn-1 span {
+  font-size: 30px;
+}
+
+
+
+.h-btn-2 span {
+  font-size: 30px;
+}
 
 
 
