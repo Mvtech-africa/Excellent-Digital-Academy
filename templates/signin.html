@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Excellent Ict Academy</title>
+    <link rel="icon" href="../static/images/ede.png" type="image/png" />
+    <link rel="stylesheet" href="../static/CSS/style.css" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+  </head>
+  <body>
+
+
+    
+    <!-- ------------------------------Sign in Section ------------------------------------- -->
+
+    
+
+        
+    <section class="form remove-margin">
+
+        <div class="form-main-con">
+            <div class="message error">
+                <p>This is an error message</p>
+            </div>
+
+
+            <h3>Login</h3>
+
+
+            <form class="form-con" action="">
+
+
+                <div class="input-group">
+                    <input type="text" id="username" placeholder="Enter Your Username" required>
+                </div>
+
+            
+
+
+
+                <div class="input-group">
+                    <div class="password-con">
+
+                        <input type="password" id="password" placeholder="Confirm Your Password" required>
+
+                        <span class="toggle-btn" onclick="togglePassword()">
+                            <I id="toggle-icon" class="fas fa-eye"></i>
+                        </span>
+
+                    </div>
+                </div>
+
+
+
+                <button>SignUp</button>
+            </form>
+
+            <p>Don't have an account? <a href="{{url_for('signup')}}">SignUp</a></p>
+        </div>
+        
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <script src="{{url_for('static',  filename='JS/main.js')}}"></script>
+  </body>
+</html>
