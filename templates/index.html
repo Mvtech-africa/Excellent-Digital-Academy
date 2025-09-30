@@ -138,59 +138,50 @@
     
     <!-- ------------------------------Hero Section ------------------------------------- -->
 
-    <section class="hero" id="hero">
-      <div class="slides" id="slides">
-        <!-- Slide 1 -->
-        <div class="slide">
-          <img src="../static/images/photo_2025-09-29_13-59-12.jpg" alt="" />
-          <div class="overlay"></div>
-          <div class="content">
-            <h1>Welcome to Excellent Digital Ict Academy</h1>
-            <p>Build modern UIs, learn fast, and ship confidently.</p>
-            <a class="btn" href="#">Get Started</a>
+
+    
+
+
+    <section class="hero">
+      <div class="hero-main-section  container-1">
+
+
+        <div class="hero-detail">
+          <h1>Learn Trending Tech Skills today with Excellent digital express ict academy</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi illum molestias tenetur rem harum porro nesciunt ratione, consequuntur molestiae provident.</p>
+
+          <div class="hero-btn-con">
+
+            <a href="">
+              <div class="h-btn-1">
+                <p>Explore</p>
+              </div>
+            </a>
+
+
+            <a href="">
+              <div class="h-btn-2">
+                <p>See our Courses</p>
+              </div>
+            </a>
+
           </div>
+
         </div>
 
-        <!-- Slide 2 -->
-        <div class="slide">
-          <img src="{{url_for('static', filename='images/photo_2025-09-29_13-59-16.jpg')}}" alt="" />
-          <div class="overlay"></div>
-          <div class="content">
-            <h1>Learn & Build</h1>
-            <p>Hands-on tutorials and real projects to level up.</p>
-            <a class="btn" href="#">See Courses</a>
-          </div>
+
+        <div class="hero-image">
+          <img src="../static/images/photo_2025-09-29_13-59-12.jpg" alt="">
         </div>
 
-        <!-- Slide 3 -->
-        <div class="slide">
-          <img src="{{url_for('static', filename='images/photo_2025-09-29_13-59-16.jpg')}}" alt="" />
-          <div class="overlay"></div>
-          <div class="content">
-            <h1>Join Our Academy</h1>
-            <p>Collaborate, get feedback, and grow with Us</p>
-            <a class="btn" href="#">Sign Up</a>
-          </div>
-        </div>
       </div>
-
-
-
-
-      <!-- Controls -->
-      <button class="arrow prev" id="prev">&#10094;</button>
-      <button class="arrow next" id="next">&#10095;</button>
-
-      <!-- Dots -->
-      <div class="dots" id="dots"></div>
     </section>
-
-
 
 
     <!-- ----------------------------------course section ---------------------------- -->
 
-    <div class="carousel-container">
+    <div class="carousel-main-con">
+      <div class="carousel-container">
       <div class="carousel" id="carousel">
         <a href="#" class="carousel-item">
           <img src="https://picsum.photos/400/200?random=1" alt="Course 1">
@@ -238,7 +229,8 @@
       <button class="nav-btn" id="prevBtn">&#10094;</button>
       <button class="nav-btn" id="nextBtn">&#10095;</button>
     </div>
-  </div>
+    </div>
+    </div>
 
 
 
@@ -250,5 +242,6 @@
 
 
     <script src="{{url_for('static',  filename='JS/main.js')}}"></script>
+  
   </body>
 </html>

@@ -114,55 +114,6 @@ const dropdownBtns = document.querySelectorAll(".dropdown-btn");
 
 
 
-// ----------------------- Hero Section Slider -----------------
-
-
-    const slidesTrack = document.getElementById('slides');
-    const slideEls = document.querySelectorAll('.slide');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-    const dotsWrap = document.getElementById('dots');
-
-    let index = 0;
-    const count = slideEls.length;
-    const intervalMs = 4000;
-    let timer = null;
-
-    // Build dots dynamically
-    const dots = Array.from({ length: count }, (_, i) => {
-        const dot = document.createElement('button');
-        dot.className = 'dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => { goTo(i); restart(); });
-        dotsWrap.appendChild(dot);
-        return dot;
-    });
-
-    function goTo(i) {
-        index = (i + count) % count;
-        slidesTrack.style.transform = `translateX(-${index * 100}%)`;
-        dots.forEach((d, j) => d.classList.toggle('active', j === index));
-    }
-
-    function nextSlide() { goTo(index + 1); }
-    function prevSlide() { goTo(index - 1); }
-
-    function start() { timer = setInterval(nextSlide, intervalMs); }
-    function stop() { clearInterval(timer); }
-    function restart(){ stop(); start(); }
-
-    nextBtn.addEventListener('click', () => { nextSlide(); restart(); });
-    prevBtn.addEventListener('click', () => { prevSlide(); restart(); });
-
-    // Init
-    goTo(0);
-    start();
-
-
-
-
-
-
-
 
 
 
@@ -223,13 +174,12 @@ function togglePassword() {
 // --------------------- courses carousel code ----------------------------------
 
 
-
-const carousel = document.getElementById("carousel");
+ const carousel = document.getElementById("carousel");
   const items = document.querySelectorAll(".carousel-item");
-  const prevButton = document.getElementById("prevBtn");
-  const nextButton = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
 
-  let index1 = 0;
+  let index = 0;
   let interval;
 
   function getItemWidth() {
@@ -237,27 +187,27 @@ const carousel = document.getElementById("carousel");
   }
 
   function goToSlide(i) {
-    index1 = Math.max(0, Math.min(i, items.length - 1));
-    carousel.style.transform = `translateX(${-index1 * getItemWidth()}px)`;
+    index = Math.max(0, Math.min(i, items.length - 1));
+    carousel.style.transform = `translateX(${-index * getItemWidth()}px)`;
   }
 
   function nextSlide() {
-    if (index1 < items.length - 1) {
-      index1++;
-      goToSlide(index1);
+    if (index < items.length - 1) {
+      index++;
+      goToSlide(index);
     } else {
-      index1 = 0; // loop back
-      goToSlide(index1);
+      index = 0; // loop back
+      goToSlide(index);
     }
   }
 
   function prevSlide() {
-    if (index1 > 0) {
-      index1--;
-      goToSlide(index1);
+    if (index > 0) {
+      index--;
+      goToSlide(index);
     } else {
-      index1 = items.length - 1; // loop back
-      goToSlide(index1);
+      index = items.length - 1; // loop back
+      goToSlide(index);
     }
   }
 
@@ -270,23 +220,13 @@ const carousel = document.getElementById("carousel");
     autoSlide();
   }
 
-  nextButton.addEventListener("click", () => { nextSlide(); resetAutoSlide(); });
-  prevButton.addEventListener("click", () => { prevSlide(); resetAutoSlide(); });
+  nextBtn.addEventListener("click", () => { nextSlide(); resetAutoSlide(); });
+  prevBtn.addEventListener("click", () => { prevSlide(); resetAutoSlide(); });
 
   autoSlide();
 
   // Recalculate slide width on resize
-  window.addEventListener("resize", () => goToSlide(index1));
-
-
-
-
-
-
-
-
-
-
+  window.addEventListener("resize", () => goToSlide(index));
 
 
 
