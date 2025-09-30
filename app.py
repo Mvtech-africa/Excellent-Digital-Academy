@@ -30,10 +30,13 @@ class User(db.Model):
 def index():
     return render_template('index.html')
 
-@app.route('/users')
-def users():
-    all_users = User.query.all()
-    return render_template('users.html', users=all_users)
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
+
+@app.route('/signIn')
+def signIn():
+    return render_template('signin.html')
 
 
 if __name__ == '__main__':

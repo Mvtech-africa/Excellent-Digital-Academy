@@ -307,7 +307,6 @@ body {
   /* font-family: "Inter", sans-serif; */
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
-  height: 500vh;
 }
 
 * {
@@ -335,10 +334,13 @@ p {
   line-height: 170%;
 }
 
+
 small {
   line-height: 170%;
 }
 
+
+/* 
 h1,
 h2,
 h3,
@@ -347,6 +349,8 @@ h5,
 h6 {
   line-height: 170%;
 }
+ */
+
 
 /* -------------------- Header styling -------------------------- */
 
@@ -372,6 +376,8 @@ header {
   backdrop-filter: blur(50px);
 }
 
+
+
 .header-bg.scrolled {
   /* box-shadow: 0 10px 10px rgba(15, 87, 241, 0.282); */
   background-color: rgba(42, 108, 250, 0.232);
@@ -380,11 +386,17 @@ header {
   backdrop-filter: blur(50px);
 }
 
+
+
+
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+
+
+
 
 .logo img {
   width: 40px;
@@ -392,11 +404,16 @@ header {
   object-fit: cover;
 }
 
+
+
 .logo h3 {
   font-size: var(--font-18);
   font-weight: 700;
   color: var(--primary-color-800);
 }
+
+
+
 
 .header-main-con {
   display: flex;
@@ -406,11 +423,17 @@ header {
   height: 60px;
 }
 
+
+
+
 .popup-menu {
   display: flex;
   align-items: center;
   gap: 30px;
 }
+
+
+
 
 .popup-menu li a {
   font-size: var(--font-14);
@@ -418,17 +441,29 @@ header {
   color: var(--primary-color-700);
 }
 
+
+
+
+
 .pop-up-main-con {
   display: flex;
   align-items: center;
   gap: 30px;
 }
 
+
+
+
 .h-btn-main-con {
   display: flex;
   align-items: center;
   gap: 20px;
 }
+
+
+
+
+
 
 .header-btn1 {
   padding: 8px 18px;
@@ -438,6 +473,10 @@ header {
   font-weight: 600;
 }
 
+
+
+
+
 .header-btn2 {
   padding: 8px 20px;
   background-color: var(--primary-color-700);
@@ -445,6 +484,10 @@ header {
   border-radius: 30px;
   font-weight: 600;
 }
+
+
+
+
 
 /* ------------------------------------------------------- */
 
@@ -454,9 +497,17 @@ header {
   align-items: center;
 }
 
+
+
+
+
 .dropdown-btn li a {
   font-size: var(--font-14);
 }
+
+
+
+
 
 /* ------------------------------------------------------- */
 
@@ -467,19 +518,33 @@ header {
   display: none;
 }
 
+
+
+
+
 .sub-btn-con {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
+
+
+
+
 .sub-btn-con i {
   font-size: var(--font-24);
 }
 
+
+
 .sub-btn-1 {
   position: relative;
 }
+
+
+
+
 
 .count {
   display: flex;
@@ -496,17 +561,32 @@ header {
   font-size: 10px;
 }
 
+
+
+
 .menu-icon {
   display: none;
 }
+
+
+
+
 
 .close-menu {
   display: none;
 }
 
+
+
+
+
 .dropdown-hover {
   position: relative;
 }
+
+
+
+
 
 .dropdown-container {
   position: absolute;
@@ -519,6 +599,9 @@ header {
   transition: 0.3s ease;
 }
 
+
+
+
 /* 
 .dropdown-hover:hover .dropdown-container {
     display: block;
@@ -528,13 +611,25 @@ header {
   transition: 0.3s ease;
 }
 
+
+
+
 .dropdown-container li {
   padding: 14px 20px;
 }
 
+
+
+
 .dropdown-container li a {
   color: white;
 }
+
+
+
+
+
+
 
 /* ----------------------------- hero styling ------------------------- */
 
@@ -545,6 +640,7 @@ header {
   overflow: hidden;
 }
 
+
 /* SLIDES TRACK */
 .slides {
   display: flex;
@@ -552,6 +648,9 @@ header {
   transition: transform 0.7s ease-in-out;
   will-change: transform;
 }
+
+
+
 
 /* EACH SLIDE */
 .slide {
@@ -563,6 +662,9 @@ header {
   overflow: hidden;
 }
 
+
+
+
 .slide img {
   position: absolute;
   inset: 0;
@@ -572,29 +674,46 @@ header {
   z-index: 0;
 }
 
+
+
+
+
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(14, 14, 14, 0.711);
   z-index: 1;
 }
+
+
 
 .content {
   position: relative;
   z-index: 2;
   text-align: center;
-  color: #fff;
+  color: var(--white-color);
   padding: 20px;
+  width: 70%;
 }
 
+
+
 .content h1 {
-  font-size: 3rem;
+  font-size: var(--font-50);
   margin-bottom: 15px;
+  color: var(--text-color-1);
 }
+
+
+
 .content p {
-  font-size: 1.2rem;
+  font-size: var(--font-20);
   margin-bottom: 20px;
+  color: var(--text-color-2);
 }
+
+
+
 
 .btn {
   padding: 12px 22px;
@@ -605,10 +724,15 @@ header {
   font-weight: bold;
   transition: 0.3s;
 }
+
+
+
 .btn:hover {
   background: #111;
   color: #fff;
 }
+
+
 
 /* ARROWS */
 .arrow {
@@ -628,12 +752,18 @@ header {
   place-items: center;
 }
 
+
+
 .arrow.prev {
   left: 20px;
 }
+
+
 .arrow.next {
   right: 20px;
 }
+
+
 
 /* DOTS */
 .dots {
@@ -645,6 +775,8 @@ header {
   gap: 10px;
   z-index: 3;
 }
+
+
 .dot {
   width: 10px;
   height: 10px;
@@ -653,9 +785,434 @@ header {
   border: 0;
   cursor: pointer;
 }
+
+
 .dot.active {
   background: #fff;
 }
+
+
+
+
+
+
+
+
+
+
+/* ------------------- form Styling ----------------------------------------- */
+
+
+
+.message {
+    Width: 100%;
+    Padding: 10px;
+    Margin: 10px 0;
+    Box-sizing: border-box;
+    Border: none;
+    outline: none;
+    Height: 43px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+.message p {
+    font-size: var(--font-14); 
+}
+
+
+
+
+.error,
+.error p {
+    background-color: var(--red-100);
+    color: var(--red-900);
+}
+
+
+
+
+.success,
+.success p {
+    background-color: var(--green-100);
+    color: var(--green-900);
+}
+
+
+
+
+
+.form {
+    Display: flex;
+    Justify-content: center;
+    Align-items: center;
+    text-align: center;
+    Height: 100vh;
+    background: radial-gradient(circle at bottom right,  var(--primary-color-400), var(--primary-color-800) );
+}
+
+
+
+.form-main-con {
+    Background-color: var(--white-color);
+    Padding: 30px;
+    Border-radius: 20px;
+    Box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    Width: 330px;
+    margin: 30px;
+}
+
+
+
+
+.add-margin {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    height: 200vh;
+}
+
+
+
+.remove-margin {
+    margin: 0;
+}
+
+
+
+.form-con input, .form-con textarea, .form-con select {
+    Width: 100%;
+    Padding: 10px;
+    Margin: 10px 0;
+    Box-sizing: border-box;
+    Border: none;
+    outline: none;
+    Height: 42px;
+    border-radius: 10px;
+    font-size: var(--font-14);
+    background-color: rgb(239, 239, 239);
+}
+
+
+
+
+
+.form-con input::placeholder {
+    color: var(--text-color-4);
+}
+
+
+.form-con textarea::placeholder {
+    color: var(--text-color-4);
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+
+.form-con textarea {
+  height: 100px;
+}
+
+
+
+.input-box {
+  display: flex;
+  height: 42px;
+  gap: 10px;
+  align-items: center;
+}
+
+
+.input-box input {
+  width: 13px;
+}
+
+
+
+.form-con button  {
+    Width: 100%;
+    Padding: 10px;
+    Margin: 10px 0;
+    Border: none;
+    Background-color: var(--origin-primary-color-500);
+    Color: var(--white-color);
+    font-size: var(--font-16);
+    Border-radius: 10px;
+    Cursor: pointer;
+    Height: 45px;
+    font-weight: 600;
+}
+
+
+
+
+
+.password-con {
+    Position: relative;
+}
+
+.toggle-btn {
+    Position: absolute;
+    Right: 10px;
+    Top: 50%;
+    Transform: translateY(-50%);
+    Cursor: pointer;
+    Font-size: 18px;
+}
+
+
+.toggle-btn i {
+    Color: var(--text-color-4);
+    Transition: 0.3s ease;
+}
+
+
+.form-main-con p {
+    font-size: var(--font-14);
+}
+
+
+.form-main-con p a {
+    font-size: var(--font-14);
+    color: var(--origin-primary-color-500);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------- Courses styling ---------------------------- */
+
+
+.carousel-container {
+      width: 95%;
+      max-width: 1200px;
+      position: relative;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .carousel {
+      display: flex;
+      gap: 20px;
+      transition: transform 0.6s ease;
+    }
+
+    .carousel-item {
+      flex: 0 0 calc(33.333% - 20px); /* 3 per row desktop */
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s;
+    }
+
+    .carousel-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .carousel-content {
+      padding: 15px;
+    }
+
+    .carousel-content h3 {
+      font-size: 18px;
+      margin: 0 0 10px;
+      color: #333;
+    }
+
+    .carousel-content p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* Controls */
+    .carousel-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 0 0;
+    }
+
+    .nav-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: #333;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .nav-btn:hover {
+      background: #007bff;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .carousel-item {
+        flex: 0 0 calc(50% - 20px); /* 2 per row tablet */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .carousel-item {
+        flex: 0 0 100%; /* 1 per row mobile */
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ----------------------------- Tablet screen size -------------------- */
 
@@ -669,9 +1226,10 @@ header {
     right: -400px;
     flex-direction: column;
     gap: 0;
-    width: 400px;
-    backdrop-filter: blur(50px);
-    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    /* backdrop-filter: blur(50px); */
+    /* box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1); */
+    background-color: var(--grey-bg-color);
     transition: 1s ease;
     overflow-y: auto;
     height: 100%;
@@ -765,19 +1323,100 @@ header {
   .rotate2 {
     transform: rotate(-180deg);
   }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ----------------------------- Mobile screen size -------------------- */
 
 @media screen and (max-width: 768px) {
-}
 
-/* --------------------------- TABLET SCREEN SIZE  --------------------------------------- */
 
-@media screen and (max-width: 1024px) {
-}
 
-/* --------------------------- MOBILE SCREEN SIZE  --------------------------------------- */
 
-@media screen and (max-width: 768px) {
+
+
+
+
+
+
+
+
+
+
 }

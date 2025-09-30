@@ -6,12 +6,12 @@
     <title>Excellent Ict Academy</title>
     <link rel="icon" href="../static/images/ede.png" type="image/png" />
     <link rel="stylesheet" href="../static/CSS/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
-    />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
   </head>
   <body>
+
+
+
     <!-- ------------------------------Header Section ------------------------------------- -->
 
     <header>
@@ -98,7 +98,7 @@
                             </div>
                         </a> -->
 
-            <a href="">
+            <a href="{{ url_for('signup') }}">
               <div class="header-btn2">Log In</div>
             </a>
           </div>
@@ -145,7 +145,7 @@
           <img src="../static/images/photo_2025-09-29_13-59-12.jpg" alt="" />
           <div class="overlay"></div>
           <div class="content">
-            <h1>Welcome to MVtech</h1>
+            <h1>Welcome to Excellent Digital Ict Academy</h1>
             <p>Build modern UIs, learn fast, and ship confidently.</p>
             <a class="btn" href="#">Get Started</a>
           </div>
@@ -167,12 +167,15 @@
           <img src="{{url_for('static', filename='images/photo_2025-09-29_13-59-16.jpg')}}" alt="" />
           <div class="overlay"></div>
           <div class="content">
-            <h1>Join Our Community</h1>
-            <p>Collaborate, get feedback, and grow with MVtech.</p>
+            <h1>Join Our Academy</h1>
+            <p>Collaborate, get feedback, and grow with Us</p>
             <a class="btn" href="#">Sign Up</a>
           </div>
         </div>
       </div>
+
+
+
 
       <!-- Controls -->
       <button class="arrow prev" id="prev">&#10094;</button>
@@ -181,6 +184,70 @@
       <!-- Dots -->
       <div class="dots" id="dots"></div>
     </section>
+
+
+
+
+    <!-- ----------------------------------course section ---------------------------- -->
+
+    <div class="carousel-container">
+      <div class="carousel" id="carousel">
+        <a href="#" class="carousel-item">
+          <img src="https://picsum.photos/400/200?random=1" alt="Course 1">
+          <div class="carousel-content">
+            <h3>Web Development Bootcamp</h3>
+            <p>Learn HTML, CSS, JS, and more to become a web developer.</p>
+          </div>
+        </a>
+
+        <a href="#" class="carousel-item">
+          <img src="https://picsum.photos/400/200?random=2" alt="Course 2">
+          <div class="carousel-content">
+            <h3>UI/UX Design</h3>
+            <p>Master the principles of design and create sleek interfaces.</p>
+          </div>
+        </a>
+
+        <a href="#" class="carousel-item">
+          <img src="https://picsum.photos/400/200?random=3" alt="Course 3">
+          <div class="carousel-content">
+            <h3>Data Science with Python</h3>
+            <p>Analyze data and build predictive models with Python.</p>
+          </div>
+        </a>
+
+        <a href="#" class="carousel-item">
+          <img src="https://picsum.photos/400/200?random=4" alt="Course 4">
+          <div class="carousel-content">
+            <h3>Mobile App Development</h3>
+            <p>Build cross-platform apps with Flutter and React Native.</p>
+          </div>
+        </a>
+
+        <a href="#" class="carousel-item">
+          <img src="https://picsum.photos/400/200?random=5" alt="Course 5">
+          <div class="carousel-content">
+            <h3>Cybersecurity Essentials</h3>
+            <p>Learn to secure networks, applications, and data systems.</p>
+          </div>
+        </a>
+    </div>
+
+    <!-- Controls -->
+    <div class="carousel-controls">
+      <button class="nav-btn" id="prevBtn">&#10094;</button>
+      <button class="nav-btn" id="nextBtn">&#10095;</button>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
 
     <script src="{{url_for('static',  filename='JS/main.js')}}"></script>
   </body>
