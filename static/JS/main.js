@@ -244,6 +244,139 @@ function togglePassword() {
 
 
 
+  //  partner section Drag-to-scroll
+const slider = document.querySelector('.partner-main-con');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener('mousedown', (e) => {
+  isDown = true;
+  slider.classList.add('active');
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+});
+slider.addEventListener('mouseleave', () => { isDown = false; });
+slider.addEventListener('mouseup', () => { isDown = false; });
+slider.addEventListener('mousemove', (e) => {
+  if(!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 2; // scroll-fast
+  slider.scrollLeft = scrollLeft - walk;
+});
+
+// Auto scroll
+function autoScroll() {
+  if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth) {
+    slider.scrollLeft = 0;
+  } else {
+    slider.scrollLeft += 1; // speed
+  }
+}
+let scrollInterval = setInterval(autoScroll, 20);
+
+// Pause auto-scroll on hover
+slider.addEventListener('mouseenter', () => clearInterval(scrollInterval));
+slider.addEventListener('mouseleave', () => scrollInterval = setInterval(autoScroll, 20));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// -------------------- scroll counter -------------------------------------
+
+
+(function() {
+  // If IntersectionObserver isn't supported, fallback to immediate count
+  const supportsObserver = 'IntersectionObserver' in window;
+
+  const easeFunctions = {
+    // Simple easing options
+    linear: t => t,
+    // easeOutQuad: decelerating to 1
+    easeOutQuad: t => 1 - (1 - t) * (1 - t),
+    // you can add more if you want
+  };
+
+  function animateCount(el, target, duration, easeName) {
+    const start = 0;
+    const startTime = performance.now();
+    const ease = (easeFunctions[easeName] || easeFunctions.linear);
+
+    function tick(now) {
+      const elapsed = now - startTime;
+      const t = Math.min(elapsed / duration, 1);
+      const value = Math.floor(start + (target - start) * ease(t));
+      el.textContent = value.toLocaleString();
+      if (t < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        el.textContent = target.toLocaleString();
+        el.dataset.ended = 'true';
+      }
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  function initCounter(el) {
+    // If already ended, skip
+    if (el.dataset.ended === 'true') return;
+    const target = parseInt(el.getAttribute('data-count') || '0', 10);
+    const duration = parseInt(el.getAttribute('data-duration') || '2000', 10);
+    const easeName = el.getAttribute('data-easing') || 'linear';
+    // Start from 0 (or keep current value if you want)
+    el.textContent = '0';
+    animateCount(el, target, duration, easeName);
+  }
+
+  const elements = Array.from(document.querySelectorAll('.js-scroll-counter'));
+
+  if (supportsObserver) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          initCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.25 // start when ~25% visible
+    });
+
+    elements.forEach(el => observer.observe(el));
+  } else {
+    // Fallback: count immediately for browsers without IntersectionObserver
+    elements.forEach(el => initCounter(el));
+  }
+})();
+
+
+
 
 
 
