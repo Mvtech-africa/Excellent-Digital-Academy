@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Excellent Ict Academy</title>
+    <title>Sign In</title>
     <link rel="icon" href="../static/images/ede.png" type="image/png" />
     <link rel="stylesheet" href="../static/CSS/style.css" />
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
@@ -20,18 +20,22 @@
     <section class="form remove-margin">
 
         <div class="form-main-con">
+          {% with messages = get_flashed_messages(with_categories=true) %}
         {% if message %}
+            {% for category, message in messages %}
         <div class="message success">
             
-            <p>This is an error message</p>
+            <div class="alert alert-{{ category }}">{{ message }}</div>
         </div>
+        {% endfor %}
         {% endif %}
+    {% endwith %}
 
 
             <h3>Login</h3>
 
 
-            <form class="form-con" action="">
+            <form class="form-con" action="{{url_for('auth.signIn')}}">
 
 
                 <div class="input-group">
@@ -59,7 +63,7 @@
                 <button>SignIn</button>
             </form>
 
-            <p>Don't have an account? <a href="{{url_for('signup')}}">SignUp</a></p>
+            <p>Don't have an account? <a href="{{url_for('auth.signup')}}">SignUp</a></p>
         </div>
         
     </section>

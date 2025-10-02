@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Excellent Ict Academy</title>
+    <title>Sign Up</title>
     <link rel="icon" href="../static/images/ede.png" type="image/png" />
     <link rel="stylesheet" href="../static/CSS/style.css" />
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
@@ -17,36 +17,37 @@
     <section class="form add-margin">
 
     <div class="form-main-con">
+    {% with messages = get_flashed_messages(with_categories=true) %}
         {% if message %}
+            {% for category, message in messages %}
         <div class="message success">
             
-            <p>This is an error message</p>
+            <div class="alert alert-{{ category }}">{{ message }}</div>
         </div>
+        {% endfor %}
         {% endif %}
-
-
+    {% endwith %}
+    
         <h3>SignUp</h3>
 
-        <form class="form-con" action="">
-
-
-
+        <form class="form-con" action="{{ url_for('auth.signIn')}}" methods="post">
+            
             <div class="input-group">
-                <input type="text" id="name" placeholder="First name" required>
+                <input type="text" id="name" placeholder="First name" name="first_name" required>
             </div>
 
 
             <div class="input-group">
-                <input type="text" id="name" placeholder="Last name" required>
+                <input type="text" id="name" placeholder="Last name" name="last_name" required>
             </div>
 
             <div class="input-group">
-                <input type="email" id="email" placeholder="Email" required>
+                <input type="email" id="email" placeholder="Email" name="email" required>
             </div>
 
 
             <div class="input-group">
-                <input type="text" id="phone" placeholder="Phone number" required>
+                <input type="text" id="phone" placeholder="Phone number" name="phone" required>
             </div>
 
         
@@ -54,7 +55,10 @@
 
             <div class="input-group">
                 <div class="password-con">
-                    <input type="text" placeholder="Password" required>
+                    <input type="password" placeholder="Password" name="password" required>
+                     <span class="toggle-btn" onclick="togglePassword()">
+                        <I id="toggle-icon" class="fas fa-eye"></i>
+                    </span>
                 </div>
             </div>
 
@@ -64,7 +68,7 @@
             <div class="input-group">
                 <div class="password-con">
 
-                    <input type="password" id="password" placeholder="Confirm Password" required>
+                    <input type="password" id="password" placeholder="Confirm Password" name="password" required>
 
                     <span class="toggle-btn" onclick="togglePassword()">
                         <I id="toggle-icon" class="fas fa-eye"></i>
@@ -84,7 +88,7 @@
             <button>SignUp</button>
         </form>
 
-        <p>Already have an account? <a href="{{url_for('signIn')}}">SignIn</a></p>
+        <p>Already have an account? <a href="{{url_for('auth.signIn')}}">SignIn</a></p>
     </div>
     
     </section>
