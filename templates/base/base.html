@@ -6,6 +6,7 @@
     <link rel="icon" href="../static/images/ede.png" type="image/png" />
     <link rel="stylesheet" href="../static/CSS/style.css" />
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     {% block head %}{% endblock head %}
 </head>
   <body>
@@ -91,12 +92,41 @@
           </div>
           <!-- --------------------------------- -->
 
+
+           <!-- ---------Drop Down 1--------------------- -->
+          <div class="dropdown-hover">
+            <ul class="dropdown-btn">
+              <li><a href="#">Profile</a></li>
+              <span class="drop-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="none"
+                    stroke="#1d51d8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m6 9l6 6l6-6"
+                  />
+                </svg>
+              </span>
+            </ul>
+
+            <ul class="dropdown-container">
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Dashboard</a></li>
+            </ul>
+          </div>
+
           <div class="h-btn-main-con">
-            <!-- <a href="">
-                            <div class="header-btn1">
-                                Sign Up
-                            </div>
-                        </a> -->
+            <a href="">
+                <div class="header-btn1">
+                    Logout
+                </div>
+            </a> 
 
             <a href="{{ url_for('signup') }}">
               <div class="header-btn2">Log In</div>

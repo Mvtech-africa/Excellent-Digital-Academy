@@ -387,3 +387,138 @@ slider.addEventListener('mouseleave', () => scrollInterval = setInterval(autoScr
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // --------------------- testimonials ----------------------
+
+ 
+    (function(){
+      const track = document.getElementById('testimonials');
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      let velocity = 0;
+      let rafId = null;
+
+      track.addEventListener('pointerdown', (e) => {
+        isDown = true;
+        track.setPointerCapture(e.pointerId);
+        startX = e.clientX;
+        scrollLeft = track.scrollLeft;
+        velocity = 0;
+        track.classList.add('dragging');
+        e.preventDefault();
+      });
+
+      track.addEventListener('pointermove', (e) => {
+        if(!isDown) return;
+        const x = e.clientX;
+        const walk = (startX - x);
+        const prev = track.scrollLeft;
+        track.scrollLeft = scrollLeft + walk;
+        velocity = track.scrollLeft - prev;
+      });
+
+      function stopDrag(e){
+        if(!isDown) return;
+        isDown = false;
+        try{ if(e && e.pointerId) track.releasePointerCapture(e.pointerId); }catch(_){}
+        track.classList.remove('dragging');
+        cancelAnimationFrame(rafId);
+        const step = () => {
+          if(Math.abs(velocity) < 0.3) return;
+          track.scrollLeft += velocity;
+          velocity *= 0.93;
+          rafId = requestAnimationFrame(step);
+        };
+        rafId = requestAnimationFrame(step);
+      }
+      track.addEventListener('pointerup', stopDrag);
+      track.addEventListener('pointercancel', stopDrag);
+      track.addEventListener('pointerleave', stopDrag);
+
+      const btnLeft = document.querySelector('.arrow.left');
+      const btnRight = document.querySelector('.arrow.right');
+      const cardWidth = 320;
+      btnLeft.addEventListener('click', ()=>{
+        track.scrollBy({left: -cardWidth, behavior:'smooth'});
+      });
+      btnRight.addEventListener('click', ()=>{
+        track.scrollBy({left: cardWidth, behavior:'smooth'});
+      });
+
+      window.addEventListener('keydown',(e)=>{
+        if(e.key === 'ArrowLeft') track.scrollBy({left:-cardWidth,behavior:'smooth'});
+        if(e.key === 'ArrowRight') track.scrollBy({left:cardWidth,behavior:'smooth'});
+      });
+
+      const fadeLeft = document.querySelector('.fade.left');
+      const fadeRight = document.querySelector('.fade.right');
+      function updateFades(){
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        fadeLeft.style.display = track.scrollLeft > 8 ? 'block' : 'none';
+        fadeRight.style.display = track.scrollLeft < maxScroll - 8 ? 'block' : 'none';
+      }
+      track.addEventListener('scroll', updateFades);
+      window.addEventListener('resize', updateFades);
+      updateFades();
+
+      track.querySelectorAll('img').forEach(img=>{ img.draggable = false });
+      document.querySelectorAll('.card').forEach(card=> card.setAttribute('tabindex','0'));
+    })();
+
+
+
+
+
+
