@@ -8,7 +8,7 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/signIn', methods=['GET', 'POST'])
 def signIn():
-    if request.method == 'POST':
+    """if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
         
@@ -21,7 +21,7 @@ def signIn():
             return redirect(url_for('main.profile'))
         else:
             flash('Invalid email or password. Please try again.')
-            return redirect(url_for('auth.signIn'))
+            return redirect(url_for('auth.signIn'))"""
     
     return render_template('signin.html')
 
