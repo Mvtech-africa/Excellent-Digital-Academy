@@ -35,7 +35,7 @@
             <h3>Login</h3>
 
 
-            <form class="form-con" action="">
+            <form class="form-con" action="{{url_for('auth.signIn')}}">
 
 
                 <div class="input-group">
@@ -63,7 +63,7 @@
                 <button>SignIn</button>
             </form>
 
-            <p>Don't have an account? <a href="{{url_for('signup')}}">SignUp</a></p>
+            <p>Don't have an account? <a href="{{url_for('auth.signup')}}">SignUp</a></p>
         </div>
         
     </section>

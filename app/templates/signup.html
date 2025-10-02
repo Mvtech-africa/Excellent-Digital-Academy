@@ -28,11 +28,9 @@
         {% endif %}
     {% endwith %}
     
-
-
         <h3>SignUp</h3>
 
-        <form class="form-con" action="{{ url_for('signIn')}}" methods="post">
+        <form class="form-con" action="{{ url_for('auth.signIn')}}" methods="post">
             
             <div class="input-group">
                 <input type="text" id="name" placeholder="First name" name="first_name" required>
@@ -90,7 +88,7 @@
             <button>SignUp</button>
         </form>
 
-        <p>Already have an account? <a href="{{url_for('signIn')}}">SignIn</a></p>
+        <p>Already have an account? <a href="{{url_for('auth.signIn')}}">SignIn</a></p>
     </div>
     
     </section>

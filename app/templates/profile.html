@@ -1,0 +1,7 @@
+ {% extends "./base/base.html" %} 
+    {% block head %}
+      <title>{{ users.first_name}}</title>
+    {% endblock head %}
+     {% block content %}
+     {{ users }}
+     {% endblock content %}
