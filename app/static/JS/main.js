@@ -43,27 +43,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+const dropdownBtns = document.querySelectorAll(".dropdown-btn");
 
-const dropdownBtns = document.querySelectorAll(".dropdown-btn");  
+dropdownBtns.forEach(btn => {
+  btn.addEventListener("click", function () {
+    const dropdownContent = this.nextElementSibling;
+    const icon = this.querySelector('.drop-icon');
 
+    // Close all other dropdowns
+    dropdownBtns.forEach(otherBtn => {
+      if (otherBtn !== this) {
+        otherBtn.classList.remove("active");
+        const otherContent = otherBtn.nextElementSibling;
+        const otherIcon = otherBtn.querySelector('.drop-icon');
 
- // to show dropdown list
+        if (otherContent) otherContent.style.display = "none";
+        if (otherIcon) otherIcon.classList.remove('rotate2');
+      }
+    });
 
-        dropdownBtns.forEach(btn => {  
-        btn.addEventListener("click", function() {  
-                this.classList.toggle("active");  
-                const dropdownContent = this.nextElementSibling;  
+    // Toggle the clicked one
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+      icon.classList.remove('rotate2');
+    } else {
+      dropdownContent.style.display = "block";
+      icon.classList.add('rotate2');
+    }
 
-                if (dropdownContent.style.display === "block") {  
-                    dropdownContent.style.display = "none";  
-                    this.querySelector('.drop-icon').classList.remove('rotate2');  
-                } else {  
-                    dropdownContent.style.display = "block";  
-                    this.querySelector('.drop-icon').classList.add('rotate2');  
-                }  
-
-            });  
-        });  
+    this.classList.toggle("active");
+  });
+});
 
 
 
@@ -519,6 +529,16 @@ slider.addEventListener('mouseleave', () => scrollInterval = setInterval(autoScr
 
 
 
+
+
+
+
+
+
+    // footer current year for copy right
+
+
+    document.getElementById("year").textContent = new Date().getFullYear();
 
 
 

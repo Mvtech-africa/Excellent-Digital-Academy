@@ -430,7 +430,7 @@ header {
 }
 
 .header-btn1 {
-  padding: 8px 18px;
+  padding: 6px 18px;
   color: var(--primary-color-700);
   border-radius: 30px;
   border: 2px solid var(--primary-color-700);
@@ -557,6 +557,7 @@ header {
 
 .add-hero-padding {
   padding-top: 30px;
+  border-radius: 0 0 60px 60px;
 }
 
 
@@ -568,7 +569,6 @@ header {
   /* padding-top: 30px; */
   align-items: center;
   background-color: var(--grey-bg-color);
-  border-radius: 0 0 30px 30px;
 }
 
 .hero-main-section {
@@ -671,6 +671,16 @@ header {
   transform: translateY(-5px);
 }
 
+
+
+
+
+
+
+
+
+
+
 /* ---------------------- partner styling ----------------------- */
 
 .partner {
@@ -702,6 +712,23 @@ header {
   width: auto;
   display: block;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* --------------------------------- why section ----------------- */
 
@@ -752,6 +779,30 @@ header {
 .why-con h3 {
   line-height: 160%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* --------------------------------- number count section ----------------- */
 
@@ -1084,17 +1135,88 @@ h1 {
 
 
 
+/* ------------------------footer  Styling ----------------------------------------- */
+
+footer {
+  padding: 100px 0 0 0;
+  background-color: var(--primary-color-900);
+}
+
+
+.f-main-con-1 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding-bottom: 30px;
+}
+
+
+.f-con {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  width: 100%;
+}
+
+
+.f-con h3 {
+  font-size: var(--font-20);
+  color: var(--primary-color-400);
+}
 
 
 
 
+.f-con a {
+  color: var(--primary-color-300);
+  transition: 0.3s ease;
+  font-size: var(--font-16);
+}
 
 
 
+.f-con a:hover {
+  letter-spacing: 2px;
+  color: var(--secondary-color-400);
+}
 
 
 
+.f-main-con-2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+  border-top: 1px solid #93c7fd;
+}
 
+
+.f-main-con-2 p {
+  color: var(--primary-color-300);
+}
+
+
+
+.f-main-con-2 span {
+  font-size: var(--font-16);
+  color: var(--primary-color-300);
+}
+
+
+.f-social-con {
+  display: flex;
+  gap: 16px;
+}
+
+
+.f-social-con a {
+  transition: 0.3s ease;
+}
+
+
+.f-social-con a:hover {
+  transform: rotate(10deg) scale(1.2);
+}
 
 
 
@@ -1350,6 +1472,43 @@ h1 {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ----------------------------- Tablet screen size -------------------- */
 
 @media screen and (max-width: 1024px) {
@@ -1493,6 +1652,32 @@ h1 {
   .count-main-con {
     grid-template-columns: repeat(2, 1fr);
   }
+
+
+
+
+  
+/* ------------------------footer  Styling ----------------------------------------- */
+
+
+
+.f-main-con-1 {
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
@@ -1578,4 +1763,29 @@ h1 {
   .why-main-con {
     grid-template-columns: repeat(1, 1fr);
   }
+
+
+    
+/* ------------------------footer  Styling ----------------------------------------- */
+
+
+
+.f-main-con-1 {
+  text-align: center;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+
+
+.f-main-con-2 {
+  text-align: center;
+  padding: 80px 0;
+  flex-direction: column;
+  gap: 30px;
+}
+
+
+
+
+
 }
