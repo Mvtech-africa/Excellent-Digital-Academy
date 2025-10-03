@@ -16,6 +16,9 @@
   --primary-color-900: #1e3c8a;
   --primary-color-950: #172654;
 
+
+
+
   --secondary-color-50: #fffcea;
   --secondary-color-100: #fff5c5;
   --secondary-color-200: #ffeb85;
@@ -346,6 +349,11 @@ h6 {
   line-height: 170%;
 }
  */
+
+
+
+
+
 
 /* -------------------- Header styling -------------------------- */
 
@@ -2330,14 +2338,6 @@ footer {
 
 
 
-
-
-
-
-
-
-
-
 }
 
 
@@ -2348,6 +2348,34 @@ footer {
 
 
 
+
+
+
+
+
+
+/* ------------------------------------------ view course ---------------------------------- */
+
+
+.course-banner {
+  margin-top: 60px;
+  height: 50vh;
+  background-image: url(../images/tech-bg.jpeg);
+}
+
+
+
+.c-d-con h1 {
+  margin: 0;
+  color: var(--text-color-1);
+}
+
+
+
+.c-d-con a {
+  margin: 0;
+  color: var(--text-color-1);
+}
 
 
 
