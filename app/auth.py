@@ -10,7 +10,18 @@ from flask_limiter.util import get_remote_address
 
 auth = Blueprint('auth', __name__)
 # Password regex: At least one letter, one number, one special character, and min length 8
-PASSWORD_REGEX = r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&^])[A-Za-z\d@$!%*#?&^]{8,}$'
+#PASSWORD_REGEX = r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&^])[A-Za-z\d@$!%*#?&^]{8,}$'
+# At least one alphabet (A-Z or a-z)
+LETTER_REGEX = r'.*[A-Za-z].*'
+
+# At least one digit (0-9)
+NUMBER_REGEX = r'.*\d.*'
+
+# At least one special character (@$!%*#?&^)
+SPECIAL_CHAR_REGEX = r'.*[@$!%*#?&^].*'
+
+# Minimum 8 characters total
+LENGTH_REGEX = r'.{8,}'
 
 
 limiter = Limiter(
@@ -55,7 +66,7 @@ def signup():
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
         phone = request.form.get('phone')
-        tos = bool(request.form.get('tos'))  # ✅ checkbox handling
+        tos = request.form.get('tos') == 'on'  # ✅ Fixed checkbox handling
 
         # Must accept Terms of Service
         if not tos:
@@ -73,9 +84,19 @@ def signup():
             return redirect(url_for('auth.signup'))
         
         # Validate password strength
-        if not re.match(PASSWORD_REGEX, password):
-            flash('Password must be at least 8 characters with one letter, one number, and one special character (@$!%*#?&^).', 'error')
+        if not re.match(LETTER_REGEX, password):
+            flash('Password must  lowercase and uppercase letters.', 'error')
             return redirect(url_for('auth.signup'))
+        elif not re.match(NUMBER_REGEX, password):
+            flash('Password must contain at least one number.', 'error')
+            return redirect(url_for('auth.signup'))
+        elif not re.match(SPECIAL_CHAR_REGEX, password):
+            flash('Password must contain at least one special character (@$!%*#?&^).', 'error')
+            return redirect(url_for('auth.signup'))
+        elif not re.match(LENGTH_REGEX, password):
+            flash('Password must be at least 8 characters long.', 'error')
+            return redirect(url_for('auth.signup'))
+    
         
         
 
