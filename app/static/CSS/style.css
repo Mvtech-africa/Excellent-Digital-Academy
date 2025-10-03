@@ -1277,13 +1277,13 @@ footer {
   font-size: var(--font-14);
 }
 
-.error,
+.message.error,
 .error p {
   background-color: var(--red-100);
   color: var(--red-900);
 }
 
-.success,
+.message.success,
 .success p {
   background-color: var(--green-100);
   color: var(--green-900);
