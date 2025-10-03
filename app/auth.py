@@ -49,7 +49,7 @@ def signIn():
             login_user(user)
             next_page = request.args.get('next')
             flash('Login successful!', 'success')  # ✅ Fixed
-            return redirect(next_page or url_for('main.profile'))
+            return redirect(next_page or url_for('main.Profile'))
         else:
             flash('Invalid email or password. Please try again.', 'error')
             return redirect(url_for('auth.signIn'))

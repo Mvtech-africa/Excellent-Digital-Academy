@@ -27,7 +27,7 @@
             <i class="uil uil-multiply icon close-icon"></i>
           </label>
 
-          <li><a href="#">Home</a></li>
+          <li><a href="{{url_for('main.index')}}">Home</a></li>
           <li><a href="#">About</a></li>
 
           <!-- ---------Drop Down 1--------------------- -->
@@ -64,7 +64,7 @@
           <!-- ---------Drop Down 1--------------------- -->
           <div class="dropdown-hover">
             <ul class="dropdown-btn">
-              <li><a href="#">Register</a></li>
+              <li><a href="#">Courses</a></li>
               <span class="drop-icon">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +92,7 @@
           </div>
           <!-- --------------------------------- -->
 
-           {% if current_user.is_authenticated  %}
+          
           <!-- ---------Drop Down 1--------------------- -->
           <div class="dropdown-hover">
             <ul class="dropdown-btn">
@@ -117,7 +117,7 @@
             
             <ul class="dropdown-container">
               <li><a href="{{url_for('main.Profile')}}">Profile</a></li>
-              <li><a href="#">Dashboard</a></li>
+              <li><a href="{{url_for('main.Dashboard')}}">Dashboard</a></li>
             </ul>
           </div>
 
@@ -127,34 +127,33 @@
                     Logout
                 </div>
             </a> 
-            {% endif %} 
-            {% if not current_user.is_authenticated  %} 
+            
             <a href="{{ url_for('auth.signup') }}">
               <div class="header-btn2">Log In</div>
             </a>
           </div>
         </ul>
-        {% endif %} 
+      
 
         <div class="sub-btn-main-con">
-          <!-- <div class="sub-btn-con">
+          <div class="sub-btn-con">
 
-                    <a href="">
+                    <!-- <a href="">
                         <div class="sub-btn-1">
                             <i class="uil uil-heart"></i>
                             <div class="count">2</div>
                         </div>
-                    </a>
+                    </a> -->
 
 
-                    <a href="">
+                    <!-- <a href="">
                         <div class="sub-btn-1">
                             <i class="uil uil-shopping-cart-alt"></i>
                             <div class="count">2</div>
                         </div>
-                    </a>
+                    </a> -->
 
-                </div> -->
+                </div> 
 
           <label id="menu-toggle" class="menu-icon">
             <i class="uil uil-bars icon visible" id="open-icon"></i>
