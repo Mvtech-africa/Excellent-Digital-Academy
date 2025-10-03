@@ -1,7 +1,274 @@
- {% extends "./base/base.html" %} 
-    {% block head %}
-      <title>{{ users.first_name}}</title>
-    {% endblock head %}
-     {% block content %}
-     {{ users }}
-     {% endblock content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='CSS/style.css')}}">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/solid.css">
+
+  <!--------------------------------LINK FOR FONT------------------------------------------------------->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <!------------------------------------END------------------------------------------------------->
+
+</head>
+<body>
+
+
+  <!-- Circular Transition Overlay -->
+  <div class="circle-overlay"></div>
+
+
+
+
+<!-- ----------------sid bar------------------------ -->
+
+
+<section class="sidebar" id="mySidebar">
+  <ul>
+
+    
+    <a href="index.html">
+      <div class="s-b-logo">
+        <img class="" src="../static/images/ede.png" alt="">
+        <span>Excellent Digital</span>
+      </div>
+    </a>
+      
+ 
+    <li><a href="">Dashboard</a></li>
+
+
+
+
+
+    <!-- -------------Drop down 1------------------------ -->
+    <ul class="dropdown-btn">
+      <li><a href="###">Dashboard</a>
+        <i class="uis-down">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24"><path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9l6 6l6-6"/></svg>
+        </i>
+      </li>
+    </ul>
+
+
+
+
+    <ul class="dropdown-container2">  
+      <li><a href="">Users1</a></li>  
+      <li><a href="">Users2</a></li>  
+      <li><a href="">Users3</a></li>  
+    </ul>  
+    <!-- ----------------------------------------------------- -->
+
+
+
+
+    
+    <!-- -------------Drop down 1------------------------ -->
+    <ul class="dropdown-btn">
+      <li><a href="###">Dashboard</a>
+        <i class="uis-down">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24"><path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9l6 6l6-6"/></svg>
+        </i>
+    </li>
+    </ul>
+
+    <ul class="dropdown-container2">  
+      <li><a href="">Users1</a></li>  
+      <li><a href="">Users2</a></li>  
+      <li><a href="">Users3</a></li>  
+    </ul>  
+    <!-- ----------------------------------------------------- -->
+
+
+    
+  </ul>
+</section>
+
+
+
+
+<!-- ------------------  Web page conten section  ----------------------------- -->
+
+<section id="myContent" class="content">
+
+
+
+<!-- ------------------  Cart section  ------------------------------- -->
+
+<section class="cart-header">
+
+  <div class="cart-header-main-con container-1">
+    <label id="toggleBtn" class="menu-icon2">
+      <i class="uil uil-bars  icon2 open"></i>
+      <i class="uil uil-multiply  icon2 close"></i>
+    </label>
+  
+
+    <form action="" class="cart-form">
+      <input type="search" placeholder="Search">
+      <button>Submit</button>
+    </form>
+
+
+    <!-- <a class="filter-con" href="">filter<span></span></a> -->
+  
+  </div>
+
+
+
+
+</section>
+
+
+
+<!-- -----------------   Dashboard heading  -------------------------- -->
+
+
+
+
+<div class="dash-b-head-con container-1">
+
+  <h1 class="">User Profile</h1>
+
+    <div class="delete-all">
+      <a class="btn-564" href="{{url_for('main.index')}}">Home<span><i class="uil uil-angle-right"></i></span></a>
+      <a class="btn-564" href="{{url_for('main.Profile')}}">Profile<span><i class="uil uil-angle-right"></i></span></a>
+
+      <a class="del-btn-3" href="">
+        <div class="d-b-h-btn">Logout</div>
+      </a>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- -----------------   Profile section  -------------------------- -->
+
+<section class="user-profile container-1">
+  <div class="u-p-bg-con">
+    <div class="u-p-main-con">
+
+
+
+
+
+      <div class="u-p-con-1">
+
+        <div class="u-p-image">
+          <img src="images/Laundry Room Ideas Aesthetic.jpeg" alt="">
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="u-p-con-2">
+
+        <div class="u-p-detail-con">
+          <h3>Name:</h3>
+          <p>Clinton Omohan</p>
+        </div>
+
+
+        <div class="u-p-detail-con">
+          <h3>Email:</h3>
+          <p>Clinton@gmail.com</p>
+        </div>
+
+
+
+        <div class="u-p-detail-con">
+          <h3>Phone Number:</h3>
+          <p>0707565433</p>
+        </div>
+
+
+        <div class="u-p-detail-con">
+          <h3>Address:</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, animi.</p>
+        </div>
+            
+
+
+        <div class="u-p-btn-main-con">
+
+          <a href="">
+            <div class="u-p-btn-1">
+              Edit profile
+            </div>
+          </a>
+
+            <a href="">
+              <div class="u-p-btn-2">
+                Change Password
+              </div>
+            </a>
+
+
+            <a href="">
+              <div class="u-p-btn-3">
+                Delete Account
+              </div>
+            </a>
+
+        </div>
+
+        
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- --------------------------copy rights------------------------------- -->
+
+<section class="copy-ryt">
+  <p>&copy <span id="year"></span>, C . Tech etc - HTML CSS Ecommerce Template</p>
+</section>
+
+
+
+
+
+
+<script src="{{url_for('static', filename='js/side-bar.js')}}"></script>
+</body>
+</html>

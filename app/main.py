@@ -7,5 +7,14 @@ def index():
     return render_template('index.html')
 
 @main.route('/profile')
-def profile():
+def Profile():
     return render_template('profile.html')
+
+@main.route('/manage-user')
+def ManageUser():
+    return render_template('manage-users.html')
+
+
+@main.route('/dashboard')
+def Dashboard():
+    return render_template('dashboard.html')    
