@@ -92,8 +92,8 @@
           </div>
           <!-- --------------------------------- -->
 
-
-           <!-- ---------Drop Down 1--------------------- -->
+           {% if current_user.is_authenticated  %}
+          <!-- ---------Drop Down 1--------------------- -->
           <div class="dropdown-hover">
             <ul class="dropdown-btn">
               <li><a href="#">Profile</a></li>
@@ -114,15 +114,10 @@
                 </svg>
               </span>
             </ul>
-
+            
             <ul class="dropdown-container">
-<<<<<<< HEAD
-              <li><a href="{{url_for('main.Profile')}}">Profile</a></li>
-              <li><a href="{{url_for('main.Dashboard')}}">Dashboard</a></li>
-=======
               <li><a href="{{url_for(main.profile)}}">Profile</a></li>
               <li><a href="#">Dashboard</a></li>
->>>>>>> ca9f546b93bb7cb1b9f3e4a1299acb93246f97c4
             </ul>
           </div>
 
@@ -132,12 +127,14 @@
                     Logout
                 </div>
             </a> 
-
+            {% endif %} 
+            {% if not current_user.is_authenticated  %} 
             <a href="{{ url_for('auth.signup') }}">
               <div class="header-btn2">Log In</div>
             </a>
           </div>
         </ul>
+        {% endif %} 
 
         <div class="sub-btn-main-con">
           <!-- <div class="sub-btn-con">
