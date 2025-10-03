@@ -20,26 +20,26 @@
     <section class="form remove-margin">
 
         <div class="form-main-con">
-          {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if message %}
-            {% for category, message in messages %}
-        <div class="message success">
-            
-            <div class="alert alert-{{ category }}">{{ message }}</div>
-        </div>
-        {% endfor %}
-        {% endif %}
-    {% endwith %}
+    {% with messages = get_flashed_messages(with_categories=True) %}
+  {% for category, message in messages %}
+    {% if message %}
+      <div class="message {{ category }}">
+        {{ message }}
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endwith %}
+
 
 
             <h3>Login</h3>
 
 
-            <form class="form-con" action="{{url_for('auth.signIn')}}">
+            <form class="form-con" action="{{url_for('auth.signIn')}}" method="POST">
 
 
                 <div class="input-group">
-                    <input type="text" id="username" placeholder="Enter Your Username" required>
+                    <input type="text" id="username" name='email' placeholder="Enter Your Username" required>
                 </div>
 
             
@@ -49,7 +49,7 @@
                 <div class="input-group">
                     <div class="password-con">
 
-                        <input type="password" id="password" placeholder="Confirm Your Password" required>
+                        <input type="password" id="password" placeholder="Your Password" name="password" required>
 
                         <span class="toggle-btn" onclick="togglePassword()">
                             <I id="toggle-icon" class="fas fa-eye"></i>
