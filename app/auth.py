@@ -1,10 +1,12 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash,current_app
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 import re
+import os
+from werkzeug.utils import secure_filename
 import logging
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
-from app.model import User
+from app.model import User, Profile
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
@@ -29,6 +31,26 @@ limiter = Limiter(
     app=None,  # Will be set when blueprint is registered
     storage_uri="memory://"
 )
+
+
+# Configuration
+UPLOAD_FOLDER = 'app/static/uploads/avatars'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
+MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
+
+
+def allowed_file(filename):
+    """Check if file extension is allowed"""
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+def validate_file_size(file):
+    """Check if file size is within limit"""
+    file.seek(0, os.SEEK_END)
+    file_size = file.tell()
+    file.seek(0)  # Reset file pointer
+    return file_size <= MAX_FILE_SIZE
 
 @auth.before_app_request
 def initialize_limiter():
@@ -130,6 +152,106 @@ def signup():
 
 
     return render_template('signup.html')
+
+
+@auth.route('/forgot-password', methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        user = User.query.filter_by(email=email).first()
+        if user:
+            # Here you would normally send an email with a reset link
+            flash('Password reset instructions have been sent to your email.', 'success')
+        else:
+            flash('Email not found. Please check and try again.', 'error')
+        return redirect(url_for('auth.forgot_password'))
+    return render_template('forgot-password.html')
+
+@auth.route('/upload-profile', methods=['POST'])
+
+
+@auth.route('/update-profile', methods=['POST'])
+@login_required
+def update_profile():
+    """Update user profile (bio and avatar)"""
+    
+    bio = request.form.get('bio', '').strip()
+    avatar = request.files.get('avatar')
+    
+    # Get existing profile or prepare to create new one
+    user_profile = Profile.query.filter_by(user_id=current_user.id).first()
+    
+    # Validate bio length
+    if bio and len(bio) > 500:
+        flash('Bio must be less than 500 characters.', 'error')
+        return redirect(url_for('main.profile'))
+    
+    avatar_url = None
+    
+    # Handle avatar upload
+    if avatar and avatar.filename:
+        # Validate file type
+        if not allowed_file(avatar.filename):
+            flash('Invalid file type. Only PNG, JPG, JPEG, GIF, and WEBP are allowed.', 'error')
+            return redirect(url_for('main.profile'))
+        
+        # Validate file size
+        if not validate_file_size(avatar):
+            flash('File size must be less than 5MB.', 'error')
+            return redirect(url_for('main.profile'))
+        
+        # Delete old avatar if it exists
+        if user_profile and user_profile.avatar_url:
+            old_file_path = os.path.join('app', user_profile.avatar_url.lstrip('/'))
+            if os.path.exists(old_file_path):
+                try:
+                    os.remove(old_file_path)
+                except OSError as e:
+                    print(f"Error deleting old avatar: {e}")
+        
+        # Secure the filename and make it unique with timestamp
+        from datetime import datetime
+        filename = secure_filename(avatar.filename)
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        unique_filename = f"{current_user.id}_{timestamp}_{filename}"
+        
+        # Ensure upload directory exists
+        os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+        
+        # Save the file
+        file_path = os.path.join(UPLOAD_FOLDER, unique_filename)
+        avatar.save(file_path)
+        
+        # Store relative path for URL
+        avatar_url = f"/static/uploads/avatars/{unique_filename}"
+    
+    # Update or create profile
+    try:
+        if user_profile:
+            # Update existing profile
+            if bio is not None:  # Allow empty string to clear bio
+                user_profile.bio = bio if bio else None
+            if avatar_url:
+                user_profile.avatar_url = avatar_url
+        else:
+            # Create new profile
+            user_profile = Profile(
+                user_id=current_user.id,
+                bio=bio if bio else None,
+                avatar_url=avatar_url
+            )
+            db.session.add(user_profile)
+        
+        db.session.commit()
+        flash('Profile updated successfully!', 'success')
+        
+    except Exception as e:
+        db.session.rollback()
+        flash('An error occurred while updating your profile. Please try again.', 'error')
+        print(f"Profile update error: {e}")
+    
+    return redirect(url_for('main.profile'))
+
 
 @auth.route('/logout')
 @login_required

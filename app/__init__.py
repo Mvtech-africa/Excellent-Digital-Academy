@@ -17,6 +17,10 @@ def create_app():
     # Load environment variables
     load_dotenv()
     
+    # Add upload folder config
+    app.config['UPLOAD_FOLDER'] = 'app/static/uploads/avatars'
+    app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5MB max file size
+    
     # Config
     app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY")
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite3"
