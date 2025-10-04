@@ -32,3 +32,11 @@ def Dashboard():
 @main.route('/viewcourse')
 def Viewcourse():
     return render_template('view-course.html')     
+
+
+
+
+   
+@main.route('/updateprofile')
+def Updateprofile():
+    return render_template('update-profile.html')     
