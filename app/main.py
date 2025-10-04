@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template
-
+from flask_login import login_required
+from . import model
 main = Blueprint('main', __name__)
 
 
@@ -11,7 +12,9 @@ def index():
 
 
 @main.route('/profile')
+@login_required
 def Profile():
+    
     return render_template('profile.html')
 
 
@@ -24,11 +27,13 @@ def ManageUser():
 
 
 @main.route('/dashboard')
+@login_required
 def Dashboard():
     return render_template('dashboard.html')  
 
 
-    
+  
 @main.route('/viewcourse')
+@login_required 
 def Viewcourse():
     return render_template('view-course.html')     

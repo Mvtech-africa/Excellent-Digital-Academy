@@ -50,6 +50,7 @@ def signIn():
             next_page = request.args.get('next')
             flash('Login successful!', 'success')  # ✅ Fixed
             return redirect(next_page or url_for('main.Profile'))
+            
         else:
             flash('Invalid email or password. Please try again.', 'error')
             return redirect(url_for('auth.signIn'))
@@ -106,7 +107,7 @@ def signup():
             flash('Email already exists. Please login.', 'error')
             return redirect(url_for('auth.signIn'))
 
-        # Create new user
+        # Create new userS
         new_user = User(
             first_name=first_name,
             last_name=last_name,
@@ -134,5 +135,5 @@ def signup():
 @login_required
 def logout():
     logout_user()
-    flash('You have been logged out.', 'info')
+    flash('You have been logged out.', 'error')
     return redirect(url_for('main.index'))

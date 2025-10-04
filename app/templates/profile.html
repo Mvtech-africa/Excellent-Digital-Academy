@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Welcome {{current_user.first_name}}</title>
   <link rel="stylesheet" href="{{url_for('static', filename='CSS/style.css')}}">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/solid.css">
@@ -131,16 +131,20 @@
 
 <div class="dash-b-head-con container-1">
 
-  <h1 class="">User Profile</h1>
+  <h1 class="">{{current_user.first_name}}</h1>
 
     <div class="delete-all">
       <a class="btn-564" href="{{url_for('main.index')}}">Home<span><i class="uil uil-angle-right"></i></span></a>
       <a class="btn-564" href="{{url_for('main.Profile')}}">Profile<span><i class="uil uil-angle-right"></i></span></a>
-
-      <a class="del-btn-3" href="">
+      {% if current_user.is_authenticated %}
+      <a class="del-btn-3" href="{{url_for('auth.logout')}}">
         <div class="d-b-h-btn">Logout</div>
       </a>
-
+      {% else %}
+      <a class="del-btn-3" href="{{url_for('auth.logout')}}">
+        <div class="d-b-h-btn">Update Profile</div>
+      </a>
+      {% endif %}
   </div>
 </div>
 
@@ -149,7 +153,7 @@
 
 
 
-
+{% if current_user.is_authenticated and not current_user.updated %}
 
 <!-- -----------------   Profile section  -------------------------- -->
 
@@ -164,7 +168,7 @@
       <div class="u-p-con-1">
 
         <div class="u-p-image">
-          <img src="images/Laundry Room Ideas Aesthetic.jpeg" alt="">
+          <img src="{{url_for('static', filename='images/photo_2025-09-29_13-59-12.jpg')}}" alt="">
         </div>
 
       </div>
@@ -185,26 +189,125 @@
 
         <div class="u-p-detail-con">
           <h3>Name:</h3>
-          <p>Clinton Omohan</p>
+          <p>{{current_user.first_name }} {{current_user.last_name}}</p>
         </div>
 
 
         <div class="u-p-detail-con">
           <h3>Email:</h3>
-          <p>Clinton@gmail.com</p>
+          <p>{{current_user.email}}</p>
         </div>
 
 
 
         <div class="u-p-detail-con">
           <h3>Phone Number:</h3>
-          <p>0707565433</p>
+          <p>{{current_user.phone}}</p>
         </div>
 
 
         <div class="u-p-detail-con">
           <h3>Address:</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, animi.</p>
+          <p>{{current_user.address}}.</p>
+        </div>
+            
+
+
+        <div class="u-p-btn-main-con">
+
+          <a href="">
+            <div class="u-p-btn-1">
+              Edit profile
+            </div>
+          </a>
+
+            <a href="">
+              <div class="u-p-btn-2">
+                Change Password
+              </div>
+            </a>
+
+
+            <a href="">
+              <div class="u-p-btn-3">
+                Update Account
+              </div>
+            </a>
+
+        </div>
+
+        
+      </div>
+      
+
+
+
+
+
+    </div>
+  </div>
+</section>
+{% elif current_user.is_authenticated and  current_user.updated %}
+
+<!-- -----------------   Profile section  -------------------------- -->
+
+<section class="user-profile container-1">
+  <div class="u-p-bg-con">
+    <div class="u-p-main-con">
+
+
+
+
+
+      <div class="u-p-con-1">
+
+        <div class="u-p-image">
+          <img src="{{current_user.image}}" alt="">
+        </div>
+        {% if current_user.enrolled %}
+        {% for course in courses %}
+        <a href="#">{{course}}</a>
+        {% endfor %}
+        {%  endif  %}
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="u-p-con-2">
+
+        <div class="u-p-detail-con">
+          <h3>Name:</h3>
+          <p>{{current_user.first_name }} {{current_user.last_name}}</p>
+        </div>
+
+
+        <div class="u-p-detail-con">
+          <h3>Email:</h3>
+          <p>{{current_user.email}}</p>
+        </div>
+
+
+
+        <div class="u-p-detail-con">
+          <h3>Phone Number:</h3>
+          <p>{{current_user.phone}}</p>
+        </div>
+
+
+        <div class="u-p-detail-con">
+          <h3>Address:</h3>
+          <p>{{current_user.address}}.</p>
         </div>
             
 
@@ -234,6 +337,7 @@
 
         
       </div>
+      
 
 
 
@@ -242,7 +346,7 @@
     </div>
   </div>
 </section>
-
+{% endif %}
 
 
 
