@@ -1,25 +1,11 @@
 from flask import Blueprint, render_template
 from flask_login import login_required
 from . import model
+import os
+
 main = Blueprint('main', __name__)
 
-# Configuration
 
-UPLOAD_FOLDER = 'app/static/uploads/avatars'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
-
-def allowed_file(filename):
-    """Check if file extension is allowed"""
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-def validate_file_size(file):
-    """Check if file size is within limit"""
-    file.seek(0, os.SEEK_END)
-    file_size = file.tell()
-    file.seek(0)  # Reset file pointer
-    return file_size <= MAX_FILE_SIZE
 
 @main.route('/')
 def index():
