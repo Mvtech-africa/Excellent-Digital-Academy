@@ -7,7 +7,7 @@
 
 
 
-
+<!-- ------------------ course banner -------------------- -->
 
 <div class="course-banner">
 
@@ -23,10 +23,169 @@
 
 
 
+<!-- ------------------ course -------------------- -->
+
+
+
+<section class="course-prize">
+
+</section>
 
 
 
 
+
+
+<section class="course container-1">
+  <div class="course-view">
+
+
+    
+  <div class="tabs">
+    <button class="tab active" data-tab="section1">Intro</button>
+    <button class="tab" data-tab="section2">Section 2</button>
+    <button class="tab" data-tab="section3">Section 3</button>
+  </div>
+
+
+
+  
+  <div id="section1" class="tab-content active">
+    <h2>Cyber Security Intro</h2>
+    
+    <video class="course-vid" controls autoplay muted>
+      <source src="../static/videos/trading-vid-5.mp4" type="video/mp4">
+    </video>
+
+  </div>
+
+
+
+  <div id="section2" class="tab-content">
+    <h2>Section 2</h2>
+    <p>This is the content for section 2. Tabs switch without navigating away.</p>
+  </div>
+
+
+
+
+  <div id="section3" class="tab-content">
+    <h2>Section 3</h2>
+    <p>This is the content for section 3. Style it however you like.</p>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ------------------------------------------------------------------------------------------------ -->
+
+
+<div class="course-container">
+    <h2>Course Outline Progress</h2>
+
+    <div class="progress-header">
+      <span>Overall Progress</span>
+      <span id="progress-text">0% Complete</span>
+    </div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- Course Section Template -->
+    <div class="course-section" data-course="html">
+      <div class="course-title">
+        <input type="checkbox" class="main-check" data-id="main-html">
+        <label>HTML Basics</label>
+        <span class="course-progress" id="html-progress">0/4 Lessons</span>
+        <span class="toggle-btn">&#9654;</span>
+      </div>
+      <div class="dropdown">
+        <div class="dropdown-item"><input type="checkbox" data-id="html-1"><label>Introduction to HTML</label></div>
+        <div class="dropdown-item"><input type="checkbox" data-id="html-2"><label>HTML Structure</label></div>
+        <div class="dropdown-item"><input type="checkbox" data-id="html-3"><label>Text Formatting</label></div>
+        <div class="dropdown-item"><input type="checkbox" data-id="html-4"><label>Links & Images</label></div>
+      </div>
+    </div>
+
+    <div class="course-section" data-course="css">
+      <div class="course-title">
+        <input type="checkbox" class="main-check" data-id="main-css">
+        <label>CSS Fundamentals</label>
+        <span class="course-progress" id="css-progress">0/4 Lessons</span>
+        <span class="toggle-btn">&#9654;</span>
+      </div>
+      <div class="dropdown">
+        <div class="dropdown-item"><input type="checkbox" data-id="css-1"><label>Intro to CSS</label></div>
+        <div class="dropdown-item"><input type="checkbox" data-id="css-2"><label>Selectors & Properties</label></div>
+        <div class="dropdown-item"><input type="checkbox" data-id="css-3"><label>Box Model</label></div>
+        <div class="dropdown-item"><input type="checkbox" data-id="css-4"><label>Layouts & Flexbox</label></div>
+      </div>
+    </div>
+
+    <div class="course-section" data-course="js">
+      <div class="course-title">
+        <input type="checkbox" class="main-check" data-id="main-js">
+        <label>JavaScript Essentials</label>
+        <span class="course-progress" id="js-progress">0/4 Lessons</span>
+        <span class="toggle-btn">&#9654;</span>
+      </div>
+      <div class="dropdown">
+        <div class="dropdown-item"><input type="checkbox" data-id="js-1"><label>Variables & Data Types</label></div>
+        <div class="dropdown-item"><input type="checkbox" data-id="js-2"><label>Functions & Scope</label></div>
+        <div class="dropdown-item"><input type="checkbox" data-id="js-3"><label>DOM Manipulation</label></div>
+        <div class="dropdown-item"><input type="checkbox" data-id="js-4"><label>Events Handling</label></div>
+      </div>
+    </div>
+
+    <div class="course-section" data-course="proj">
+      <div class="course-title">
+        <input type="checkbox" class="main-check" data-id="main-proj">
+        <label>Frontend Projects</label>
+        <span class="course-progress" id="proj-progress">0/4 Lessons</span>
+        <span class="toggle-btn">&#9654;</span>
+      </div>
+      <div class="dropdown">
+        <div class="dropdown-item"><input type="checkbox" data-id="proj-1"><label>Mini Portfolio</label></div>
+        <div class="dropdown-item"><input type="checkbox" data-id="proj-2"><label>Landing Page</label></div>
+        <div class="dropdown-item"><input type="checkbox" data-id="proj-3"><label>Todo App</label></div>
+        <div class="dropdown-item"><input type="checkbox" data-id="proj-4"><label>Calculator App</label></div>
+      </div>
+    </div>
+
+    <div class="course-section" data-course="final">
+      <div class="course-title">
+        <input type="checkbox" class="main-check" data-id="main-final">
+        <label>Final Assessment</label>
+        <span class="course-progress" id="final-progress">0/3 Lessons</span>
+        <span class="toggle-btn">&#9654;</span>
+      </div>
+      <div class="dropdown">
+        <div class="dropdown-item"><input type="checkbox" data-id="final-1"><label>Quiz</label></div>
+        <div class="dropdown-item"><input type="checkbox" data-id="final-2"><label>Project Submission</label></div>
+        <div class="dropdown-item"><input type="checkbox" data-id="final-3"><label>Feedback Form</label></div>
+      </div>
+    </div>
+  </div>
+
+
+
+  </div>
+</section>
 
 
 
@@ -164,6 +323,134 @@
   </footer>
 
 
+
+
+
+
+
+  <script>
+    const tabs = document.querySelectorAll(".tab");
+      const contents = document.querySelectorAll(".tab-content");
+
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          // Remove active class from all
+          tabs.forEach(t => t.classList.remove("active"));
+          contents.forEach(c => c.classList.remove("active"));
+
+          // Add active class to clicked tab and related content
+          tab.classList.add("active");
+          document.getElementById(tab.dataset.tab).classList.add("active");
+        });
+      });
+
+
+
+
+
+
+
+
+
+const dropdownBtns = document.querySelectorAll(".course-title");
+    const progressBar = document.getElementById("progress-bar");
+    const progressText = document.getElementById("progress-text");
+    const allCheckboxes = document.querySelectorAll("input[type='checkbox']");
+
+    // Load saved states
+    window.addEventListener("DOMContentLoaded", () => {
+      allCheckboxes.forEach(box => {
+        const saved = localStorage.getItem(box.dataset.id);
+        if (saved === "true") box.checked = true;
+        if (box.classList.contains("main-check") && box.checked) {
+          box.dataset.locked = true;
+        }
+      });
+      updateAllProgress();
+    });
+
+    // Save checkbox states
+    function saveState() {
+      allCheckboxes.forEach(box => {
+        localStorage.setItem(box.dataset.id, box.checked);
+      });
+    }
+
+    // Dropdown toggle (only one open)
+    dropdownBtns.forEach(btn => {
+      btn.addEventListener("click", function(e) {
+        if (e.target.tagName.toLowerCase() === "input" || e.target.tagName.toLowerCase() === "label") return;
+        const dropdown = this.nextElementSibling;
+        const toggleIcon = this.querySelector(".toggle-btn");
+
+        document.querySelectorAll(".dropdown").forEach(d => {
+          if (d !== dropdown) {
+            d.style.display = "none";
+            d.previousElementSibling.querySelector(".toggle-btn").classList.remove("rotate");
+          }
+        });
+
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        toggleIcon.classList.toggle("rotate");
+      });
+    });
+
+    // Prevent unchecking main checkboxes once checked
+    document.querySelectorAll(".main-check").forEach(mainCheck => {
+      mainCheck.addEventListener("click", function() {
+        if (this.checked) {
+          this.dataset.locked = true;
+          localStorage.setItem(this.dataset.id, true);
+        } else if (this.dataset.locked) {
+          this.checked = true;
+        }
+        updateAllProgress();
+      });
+    });
+
+    // Update individual and total progress
+    function updateAllProgress() {
+      const courses = document.querySelectorAll(".course-section");
+      let totalChecked = 0, totalCount = 0;
+
+      courses.forEach(course => {
+        const courseId = course.dataset.course;
+        const lessonBoxes = course.querySelectorAll(".dropdown-item input[type='checkbox']");
+        const checkedCount = Array.from(lessonBoxes).filter(b => b.checked).length;
+        const courseTotal = lessonBoxes.length;
+        totalChecked += checkedCount + (course.querySelector(".main-check").checked ? 1 : 0);
+        totalCount += courseTotal + 1;
+
+        // Update per-course progress text
+        const progressText = document.getElementById(courseId + "-progress");
+        if (progressText) {
+          progressText.textContent = `${checkedCount}/${courseTotal} Lessons`;
+        }
+      });
+
+      const percent = Math.round((totalChecked / totalCount) * 100);
+      progressBar.style.width = percent + "%";
+      progressText.textContent = percent + "% Complete";
+
+      saveState();
+    }
+
+    allCheckboxes.forEach(box => {
+      box.addEventListener("change", updateAllProgress);
+    });
+
+
+
+
+
+  </script>
     
+
+
+
+
+
+
+
 
   {% endblock content %}

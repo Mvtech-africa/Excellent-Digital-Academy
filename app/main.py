@@ -40,4 +40,3 @@ def Dashboard():
 def Viewcourse():
     return render_template('view-course.html')     
 
-
