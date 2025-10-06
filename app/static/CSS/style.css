@@ -1865,7 +1865,7 @@ footer {
 
 
 .user-profile {
-  padding: 20px 0 80px 0;
+  padding: 20px 0 20px 0;
 }
 
 
@@ -1999,6 +1999,74 @@ footer {
   font-size: var(--font-16);
   color: var(--text-color-5);
 }
+
+
+/* -------------------------------- user courses ------------------------------------ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2354,6 +2422,8 @@ footer {
 
 
 
+
+
 /* ------------------------------------------ view course ---------------------------------- */
 
 
@@ -2392,16 +2462,27 @@ footer {
 
 
 
+
+
+
+
+
+
+
+
 /* ------------------------------------------------------- */
 
 .course {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
   padding: 40px 0;
 }
 
 .course-view {
   /* background-color: #00323465; */
   width: 60%;
-  height: 500vh;
+  /* height: 500vh; */
 }
 
 
@@ -2466,19 +2547,18 @@ footer {
 /* ---------------------------------------------------- */
 
 
-
 .course-container {
-      max-width: 750px;
-      margin: auto;
-      background: #fff;
+      margin-top: 50px;
+      /* background: #fff; */
       border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      padding: 20px;
+      /* box-shadow: 0 2px 10px rgba(0,0,0,0.1); */
+      /* padding: 20px; */
     }
 
-    h2 {
-      text-align: center;
+    .course-container h3 {
+      text-align: start;
       color: #333;
+      padding-bottom: 20px;
     }
 
     .progress-header {
@@ -2494,8 +2574,8 @@ footer {
       background: #e0e0e0;
       border-radius: 30px;
       overflow: hidden;
-      margin: 5px 0 20px 0;
-      height: 12px;
+      margin: 5px 0 40px 0;
+      height: 5px;
     }
 
     .progress-bar {
@@ -2505,15 +2585,18 @@ footer {
       transition: width 0.3s ease-in-out;
     }
 
+    .course-section {
+      margin: 20px 0; /* Added gap between sections */
+    }
+
     .course-title {
       display: flex;
       align-items: center;
       justify-content: space-between;
       background: #f1f1f1;
-      padding: 12px 15px;
+      padding: 22px 15px;
       border-radius: 8px;
       cursor: pointer;
-      margin-top: 10px;
       transition: background 0.2s;
       position: relative;
     }
@@ -2545,7 +2628,7 @@ footer {
       display: none;
       padding: 10px 20px;
       background: #fafafa;
-      border-left: 3px solid #007bff;
+      /* border-left: 3px solid #007bff; */
       margin-bottom: 10px;
       border-radius: 0 0 8px 8px;
     }
@@ -2553,7 +2636,7 @@ footer {
     .dropdown-item {
       display: flex;
       align-items: center;
-      margin-bottom: 8px;
+      margin: 15px 0;
     }
 
     .dropdown-item input {
@@ -2568,10 +2651,16 @@ footer {
     .toggle-btn {
       font-size: 18px;
       margin-left: 10px;
-      transition: transform 0.3s;
+      transition: transform 0.3s ease;
+      display: inline-block;
     }
 
-    .toggle-btn.rotate {
+    .toggle-btn i {
+      font-size: var(--font-24);
+      color: var(--primary-color-600);
+    }
+
+    .rotate {
       transform: rotate(90deg);
     }
 
@@ -2580,7 +2669,114 @@ footer {
 
 
 
+/* -------------------------------------------------------- */
 
+.c-p-main-con {
+  position: sticky;
+  top: 70px;
+  margin-top: -350px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  /* border: 2px solid grey; */
+  border-radius: 30px;
+  height: fit-content;
+  width: 33%;
+  background-color: var(--white-color);
+}
+
+
+.c-p-con {
+  padding: 10px;
+}
+
+
+.c-p-image {
+  overflow: hidden;
+  width: 100%;
+  height: 220px;
+  border-radius: 20px 20px 0 0;
+}
+
+.c-p-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+
+.n-enrol {
+  width: 100%;
+  text-align: center;
+  font-size: var(--font-15);
+  color: var(--red-500);
+}
+
+.enrolled {
+  width: 100%;
+  text-align: center;
+  font-size: var(--font-15);
+  color: var(--green-500);
+}
+
+
+.c-p-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--text-color-1);
+  width: 100%;
+  height: 45px;
+  background-color: var(--primary-color-600);
+  border-radius: 8px;
+}
+
+
+
+.c-p-prize-con {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
+
+
+
+.s-price {
+  font-size: var(--font-24);
+  font-weight: 600;
+  color: var(--red-600);
+  text-decoration: line-through;
+}
+
+
+
+
+
+
+.r-price {
+  font-size: var(--font-24);
+  font-weight: 600;
+  color: var(--text-color-6);
+}
+
+
+
+.c-p-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 20px;
+}
+
+.c-p-detail h4 {
+  font-size: var(--font-16);
+}
+
+
+.p-d-p  {
+  color: var(--text-color-5);
+}
 
 
 
@@ -3079,6 +3275,45 @@ footer {
 
 
 
+/* ------------------------------------------ view course ---------------------------------- */
+
+.course-banner {
+  text-align: center;
+}
+
+
+.c-d-con h1 {
+  width: 100%;
+}
+
+
+
+
+
+.course {
+    flex-direction: column-reverse;
+}
+
+
+.c-p-main-con {
+  position: static;
+  margin-top: 0;
+  margin-bottom: 40px;
+  width: 70%;
+  max-width: 70%;
+  margin-inline: auto;
+}
+
+
+
+.course-view {
+  width: 100%;
+}
+
+
+
+
+
 
 
 
@@ -3088,6 +3323,19 @@ footer {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3192,6 +3440,56 @@ footer {
   flex-direction: column;
   gap: 30px;
 }
+
+
+
+
+
+
+
+/* ------------------------------------------ view course ---------------------------------- */
+
+.course-banner {
+  text-align: center;
+}
+
+
+.c-d-con h1 {
+  width: 100%;
+}
+
+
+
+
+
+.course {
+    flex-direction: column-reverse;
+}
+
+
+.c-p-main-con {
+  position: static;
+  margin-top: 0;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+
+
+.course-view {
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
 
 
 
