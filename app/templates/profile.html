@@ -141,7 +141,7 @@
         <div class="d-b-h-btn">Logout</div>
       </a>
       {% else %}
-      <a class="del-btn-3" href="{{url_for('auth.logout')}}">
+      <a class="del-btn-3" href="{{url_for('auth.update_profile')}}">
         <div class="d-b-h-btn">Update Profile</div>
       </a>
       {% endif %}
@@ -208,10 +208,9 @@
 
         <div class="u-p-detail-con">
           <h3>Address:</h3>
-          <p>{{current_user.address}}.</p>
+          <p>{{current_user.bio}}.</p>
         </div>
             
-
 
         <div class="u-p-btn-main-con">
 
@@ -228,7 +227,7 @@
             </a>
 
 
-            <a href="">
+            <a href="{{url_for('auth.update_profile')}}">
               <div class="u-p-btn-3">
                 Update Account
               </div>

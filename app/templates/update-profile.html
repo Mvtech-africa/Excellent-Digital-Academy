@@ -3,88 +3,82 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In</title>
+    <title>Update Profile</title>
     <link rel="icon" href="../static/images/ede.png" type="image/png" />
     <link rel="stylesheet" href="../static/CSS/style.css" />
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
   </head>
   <body>
-
-
     
-    <!-- ------------------------------Sign in Section ------------------------------------- -->
-
+    <!-- ------------------------------Update Profile Section ------------------------------------- -->
     
-
-        
     <section class="form add-margin">
-
         <div class="form-main-con">
-    {% with messages = get_flashed_messages(with_categories=True) %}
-  {% for category, message in messages %}
-    {% if message %}
-      <div class="message {{ category }}">
-        {{ message }}
-      </div>
-    {% endif %}
-  {% endfor %}
-{% endwith %}
-
-
+            {% with messages = get_flashed_messages(with_categories=True) %}
+              {% for category, message in messages %}
+                {% if message %}
+                  <div class="message {{ category }}">
+                    {{ message }}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            {% endwith %}
 
             <h3>Update Profile</h3>
 
+            <form action="{{ url_for('auth.update_profile') }}" method="POST" enctype="multipart/form-data">
 
-            <form class="form-con" action="" method="POST">
-
-
+                <!-- Current user info (read-only display) -->
                 <div class="input-group">
-                    <input type="text" id="username" name='email' placeholder="Name" required>
+                    <label>Email (cannot be changed)</label>
+                    <input type="text" value="{{ current_user.email }}" disabled>
                 </div>
 
-
+                <!-- Bio textarea - ✅ FIXED: Added name="bio" -->
                 <div class="input-group">
-                   <textarea placeholder="Your Bio"></textarea>
+                    <label for="bio">Bio</label>
+                    <textarea 
+                        id="bio" 
+                        name="bio" 
+                        placeholder="Tell us about yourself..." 
+                        rows="4" 
+                        maxlength="500"
+                    >{% if profile and profile.bio %}{{ profile.bio }}{% endif %}</textarea>
                 </div>
 
-
+                <!-- State of Origin - ✅ FIXED: Added name attribute -->
                 <div class="input-group">
-                    <input placeholder="State of Origin" type="text">
+                    <label for="state">State of Origin</label>
+                    <input type="text" id="state" name="state" placeholder="State of Origin">
                 </div>
 
-
+                <!-- Country - ✅ FIXED: Added name attribute -->
                 <div class="input-group">
-                    <input placeholder="Country" type="text">
+                    <label for="country">Country</label>
+                    <input type="text" id="country" name="country" placeholder="Country">
                 </div>
 
-
-    
-            
+                <!-- Profile Picture - ✅ FIXED: Changed name to "avatar" -->
                 <div class="input-group">
-                    <label for="">Profile Picture</label>
-                    <input type="file" id="username" name='email' placeholder="Enter Your Username" required>
+                    <label for="avatar">Profile Picture</label>
+                    <input 
+                        type="file" 
+                        id="avatar" 
+                        name="avatar" 
+                        accept=".png,.jpg,.jpeg,.gif,.webp"
+                    >
+                    {% if profile and profile.avatar_url %}
+                        <small>Current: <a href="{{ profile.avatar_url }}" target="_blank">View</a></small>
+                    {% endif %}
                 </div>
 
-
-
-
-
-                <button>Update</button>
+                <!-- ✅ FIXED: Added type="submit" -->
+                <button type="submit">Update Profile</button>
             </form>
 
+            <p><a href="{{ url_for('main.profile') }}">Back to Profile</a></p>
         </div>
-        
     </section>
 
-
-
-
-
-
-
-
-
-
-    <script src="{{url_for('static',  filename='JS/main.js')}}"></script>
-  </body>
+    
 </html>

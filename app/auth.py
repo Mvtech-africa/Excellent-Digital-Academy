@@ -34,7 +34,7 @@ limiter = Limiter(
 
 
 # Configuration
-UPLOAD_FOLDER = 'app/static/uploads/avatars'
+UPLOAD_FOLDER = 'app/static/images/avatars'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 
@@ -167,15 +167,19 @@ def forgot_password():
         return redirect(url_for('auth.forgot_password'))
     return render_template('forgot-password.html')
 
-@auth.route('/upload-profile', methods=['POST'])
 
 
-@auth.route('/update-profile', methods=['POST'])
+
+@auth.route('/update-profile', methods=['POST'])  # ✅ Remove GET, only POST
 @login_required
 def update_profile():
     """Update user profile (bio and avatar)"""
     
+    
     bio = request.form.get('bio', '').strip()
+    state = request.form.get('state', '').strip()
+    country = request.form.get('country', '').strip()
+    address = request.form.get('address', '').strip()
     avatar = request.files.get('avatar')
     
     # Get existing profile or prepare to create new one
@@ -184,7 +188,7 @@ def update_profile():
     # Validate bio length
     if bio and len(bio) > 500:
         flash('Bio must be less than 500 characters.', 'error')
-        return redirect(url_for('main.profile'))
+        return redirect(url_for('main.profile'))  # ✅ Changed
     
     avatar_url = None
     
@@ -193,12 +197,12 @@ def update_profile():
         # Validate file type
         if not allowed_file(avatar.filename):
             flash('Invalid file type. Only PNG, JPG, JPEG, GIF, and WEBP are allowed.', 'error')
-            return redirect(url_for('main.profile'))
+            return redirect(url_for('main.profile'))  # ✅ Changed
         
         # Validate file size
         if not validate_file_size(avatar):
             flash('File size must be less than 5MB.', 'error')
-            return redirect(url_for('main.profile'))
+            return redirect(url_for('main.profile'))  # ✅ Changed
         
         # Delete old avatar if it exists
         if user_profile and user_profile.avatar_url:
@@ -223,22 +227,31 @@ def update_profile():
         avatar.save(file_path)
         
         # Store relative path for URL
-        avatar_url = f"/static/uploads/avatars/{unique_filename}"
+        avatar_url = f"/static/images/avatars/{unique_filename}"
     
     # Update or create profile
     try:
         if user_profile:
             # Update existing profile
-            if bio is not None:  # Allow empty string to clear bio
+            if bio is not None:
                 user_profile.bio = bio if bio else None
+            if state:
+                user_profile.state = state if state else None
+            if country:
+                user_profile.country = country if country else None
             if avatar_url:
                 user_profile.avatar_url = avatar_url
+            if address:
+                user_profile.address = address
         else:
             # Create new profile
             user_profile = Profile(
                 user_id=current_user.id,
                 bio=bio if bio else None,
-                avatar_url=avatar_url
+                state=state if state else None,
+                country=country if country else None,
+                avatar_url=avatar_url,
+                address = address if address else None
             )
             db.session.add(user_profile)
         
@@ -248,10 +261,10 @@ def update_profile():
     except Exception as e:
         db.session.rollback()
         flash('An error occurred while updating your profile. Please try again.', 'error')
-        print(f"Profile update error: {e}")
+        logging.error(f"Profile update error: {e}")
     
-    return redirect(url_for('main.profile'))
-
+    # ✅ IMPORTANT: Must redirect to a GET route
+    return redirect(url_for('main.profile'))  # NOT back to update_profile!
 
 @auth.route('/logout')
 @login_required
