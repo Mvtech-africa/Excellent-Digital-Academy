@@ -16,7 +16,7 @@
 
     <section class="form add-margin">
     <div class="form-main-con">
-   {% with messages = get_flashed_messages(with_categories=True) %}
+  {% with messages = get_flashed_messages(with_categories=True) %}
   {% for category, message in messages %}
     {% if message %}
       <div class="message {{ category }}">
@@ -25,6 +25,7 @@
     {% endif %}
   {% endfor %}
 {% endwith %}
+
 
 
 <form class="form-con" action="{{ url_for('auth.signup') }}" method="POST">

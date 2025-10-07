@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome {{current_user.first_name}}</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/ede.png' )}}" type="image/png" />
   <link rel="stylesheet" href="{{url_for('static', filename='CSS/style.css')}}">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/solid.css">
@@ -136,12 +137,12 @@
     <div class="delete-all">
       <a class="btn-564" href="{{url_for('main.index')}}">Home<span><i class="uil uil-angle-right"></i></span></a>
       <a class="btn-564" href="{{url_for('main.Profile')}}">Profile<span><i class="uil uil-angle-right"></i></span></a>
-      {% if current_user.is_authenticated %}
+      {% if not current_user.is_authenticated %}
       <a class="del-btn-3" href="{{url_for('auth.logout')}}">
         <div class="d-b-h-btn">Logout</div>
       </a>
       {% else %}
-      <a class="del-btn-3" href="{{url_for('auth.logout')}}">
+      <a class="del-btn-3" href="{{url_for('auth.update_profile')}}">
         <div class="d-b-h-btn">Update Profile</div>
       </a>
       {% endif %}
@@ -153,7 +154,7 @@
 
 
 
-{% if current_user.is_authenticated and not current_user.updated %}
+{% if current_user.is_authenticated and not current_user.profile.avatar_url %}
 
 <!-- -----------------   Profile section  -------------------------- -->
 
@@ -168,7 +169,7 @@
       <div class="u-p-con-1">
 
         <div class="u-p-image">
-          <img src="{{url_for('static', filename='images/photo_2025-09-29_13-59-12.jpg')}}" alt="">
+          <img src="{{current_user.profile.avatar_url}}" alt="">
         </div>
 
       </div>
@@ -208,10 +209,9 @@
 
         <div class="u-p-detail-con">
           <h3>Address:</h3>
-          <p>{{current_user.address}}.</p>
+          <p>{{current_user.profile.bio}}.</p>
         </div>
             
-
 
         <div class="u-p-btn-main-con">
 
@@ -228,7 +228,7 @@
             </a>
 
 
-            <a href="">
+            <a href="{{url_for('auth.update_profile')}}">
               <div class="u-p-btn-3">
                 Update Account
               </div>
@@ -247,7 +247,7 @@
     </div>
   </div>
 </section>
-{% elif current_user.is_authenticated and  current_user.updated %}
+{% elif current_user.is_authenticated and  current_user.profile.avatar_url %}
 
 <!-- -----------------   Profile section  -------------------------- -->
 
@@ -262,20 +262,23 @@
       <div class="u-p-con-1">
 
         <div class="u-p-image">
-          <img src="{{current_user.image}}" alt="">
+          {% if profile.avatar_url %}
+          <img src="{{ url_for('static', filename='images/avatars/' ~ profile.avatar_url) }}" 
+          alt="Profile picture" width="150">
+          {% else %}
+          <img src="{{ url_for('static', filename='images/default-avatar.png') }}" 
+          alt="Default avatar" width="150">
+          {% endif %}
+
         </div>
         {% if current_user.enrolled %}
         {% for course in courses %}
         <a href="#">{{course}}</a>
         {% endfor %}
         {%  endif  %}
+        
 
       </div>
-
-
-
-
-
 
 
 
@@ -307,7 +310,7 @@
 
         <div class="u-p-detail-con">
           <h3>Address:</h3>
-          <p>{{current_user.address}}.</p>
+          <p>{{current_user.profile.address}}.</p>
         </div>
             
 

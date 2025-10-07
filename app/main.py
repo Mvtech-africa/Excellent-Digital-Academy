@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from flask_login import login_required
+from flask_login import login_required , current_user
 from . import model
 import os
 
@@ -16,8 +16,9 @@ def index():
 @main.route('/profile')
 @login_required
 def Profile():
-    
-    return render_template('profile.html')
+    user_profile = model.Profile.query.filter_by(user_id=current_user.id).first()
+    return render_template('profile.html', profile=user_profile)
+
 
 
 
