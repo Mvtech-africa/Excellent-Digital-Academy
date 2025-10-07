@@ -33,24 +33,22 @@ limiter = Limiter(
 )
 
 
-# Configuration
+# Upload config
 UPLOAD_FOLDER = 'app/static/images/avatars'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 
+# Ensure folder exists
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 def allowed_file(filename):
-    """Check if file extension is allowed"""
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def validate_file_size(file):
-    """Check if file size is within limit"""
     file.seek(0, os.SEEK_END)
-    file_size = file.tell()
-    file.seek(0)  # Reset file pointer
-    return file_size <= MAX_FILE_SIZE
+    size = file.tell()
+    file.seek(0)
+    return size <= MAX_FILE_SIZE
 
 @auth.before_app_request
 def initialize_limiter():
@@ -170,105 +168,82 @@ def forgot_password():
 
 
 
-@auth.route('/update-profile', methods=['POST'])  # ✅ Remove GET, only POST
+@auth.route('/update-profile', methods=['GET', 'POST'])
 @login_required
 def update_profile():
-    """Update user profile (bio and avatar)"""
-    
-    
-    bio = request.form.get('bio', '').strip()
-    state = request.form.get('state', '').strip()
-    country = request.form.get('country', '').strip()
-    address = request.form.get('address', '').strip()
-    avatar = request.files.get('avatar')
-    
-    # Get existing profile or prepare to create new one
+    """Display or update user profile"""
     user_profile = Profile.query.filter_by(user_id=current_user.id).first()
-    
-    # Validate bio length
-    if bio and len(bio) > 500:
-        flash('Bio must be less than 500 characters.', 'error')
-        return redirect(url_for('main.profile'))  # ✅ Changed
-    
-    avatar_url = None
-    
-    # Handle avatar upload
-    if avatar and avatar.filename:
-        # Validate file type
-        if not allowed_file(avatar.filename):
-            flash('Invalid file type. Only PNG, JPG, JPEG, GIF, and WEBP are allowed.', 'error')
-            return redirect(url_for('main.profile'))  # ✅ Changed
-        
-        # Validate file size
-        if not validate_file_size(avatar):
-            flash('File size must be less than 5MB.', 'error')
-            return redirect(url_for('main.profile'))  # ✅ Changed
-        
-        # Delete old avatar if it exists
-        if user_profile and user_profile.avatar_url:
-            old_file_path = os.path.join('app', user_profile.avatar_url.lstrip('/'))
-            if os.path.exists(old_file_path):
-                try:
-                    os.remove(old_file_path)
-                except OSError as e:
-                    print(f"Error deleting old avatar: {e}")
-        
-        # Secure the filename and make it unique with timestamp
-        from datetime import datetime
-        filename = secure_filename(avatar.filename)
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        unique_filename = f"{current_user.id}_{timestamp}_{filename}"
-        
-        # Ensure upload directory exists
-        os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-        
-        # Save the file
-        file_path = os.path.join(UPLOAD_FOLDER, unique_filename)
-        avatar.save(file_path)
-        
-        # Store relative path for URL
-        avatar_url = f"/static/images/avatars/{unique_filename}"
-    
-    # Update or create profile
+
+    # GET — render form
+    if request.method == 'GET':
+        return render_template('update-profile.html', profile=user_profile)
+
+    # POST — handle form submission
+    bio = request.form.get('bio', '').strip()
+    lg_of_origin = request.form.get('LG_of_origin', '').strip()
+    state_of_origin = request.form.get('state_of_origin', '').strip()
+    country_of_origin = request.form.get('country_of_origin', '').strip()
+    lg_of_residence = request.form.get('LG_of_residence', '').strip()
+    state_of_residence = request.form.get('state_of_residence', '').strip()
+    country_of_residence = request.form.get('country_of_residence', '').strip()
+    address = request.form.get('address', '').strip()
+
+    avatar_file = request.files.get('avatar_url')
+
     try:
+        # Handle avatar upload
+        avatar_filename = None
+        if avatar_file and allowed_file(avatar_file.filename) and validate_file_size(avatar_file):
+            filename = secure_filename(avatar_file.filename)
+            avatar_path = os.path.join(UPLOAD_FOLDER, filename)
+            avatar_file.save(avatar_path)
+            avatar_filename = filename
+
         if user_profile:
             # Update existing profile
-            if bio is not None:
-                user_profile.bio = bio if bio else None
-            if state:
-                user_profile.state = state if state else None
-            if country:
-                user_profile.country = country if country else None
-            if avatar_url:
-                user_profile.avatar_url = avatar_url
-            if address:
-                user_profile.address = address
+            user_profile.state_of_origin = state_of_origin or user_profile.state_of_origin
+            user_profile.country_of_origin = country_of_origin or user_profile.country_of_origin
+            user_profile.lg_of_origin = lg_of_origin or user_profile.lg_of_origin
+            user_profile.state_of_residence = state_of_residence or user_profile.state_of_residence
+            user_profile.country_of_residence = country_of_residence or user_profile.country_of_residence
+            user_profile.lg_of_residence = lg_of_residence or user_profile.lg_of_residence
+            user_profile.address = address or user_profile.address
+            user_profile.bio = bio or user_profile.bio
+
+            if avatar_filename:
+                user_profile.avatar_url = avatar_filename
+
         else:
             # Create new profile
-            user_profile = Profile(
+            new_profile = Profile(
                 user_id=current_user.id,
-                bio=bio if bio else None,
-                state=state if state else None,
-                country=country if country else None,
-                avatar_url=avatar_url,
-                address = address if address else None
+                bio=bio or None,
+                state_of_origin=state_of_origin or None,
+                country_of_origin=country_of_origin or None,
+                lg_of_origin=lg_of_origin or None,
+                avatar_url=avatar_filename or None,
+                state_of_residence=state_of_residence or None,
+                country_of_residence=country_of_residence or None,
+                lg_of_residence=lg_of_residence or None,
+                address=address or None
             )
-            db.session.add(user_profile)
-        
+            db.session.add(new_profile)
+
         db.session.commit()
-        flash('Profile updated successfully!', 'success')
-        
+        flash('✅ Profile updated successfully!', 'success')
+
     except Exception as e:
         db.session.rollback()
-        flash('An error occurred while updating your profile. Please try again.', 'error')
-        logging.error(f"Profile update error: {e}")
-    
-    # ✅ IMPORTANT: Must redirect to a GET route
-    return redirect(url_for('main.profile'))  # NOT back to update_profile!
+        logging.error("Error updating profile: %s", e)
+        flash(f'❌ An error occurred while updating your profile: {e}', 'error')
+
+    return redirect(url_for('main.Profile'))
+
 
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
-    flash('You have been logged out.', 'error')
-    return redirect(url_for('main.index'))
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('auth.signIn'))
+

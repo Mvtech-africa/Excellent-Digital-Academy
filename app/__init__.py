@@ -18,7 +18,7 @@ def create_app():
     load_dotenv()
     
     # Add upload folder config
-    app.config['UPLOAD_FOLDER'] = 'app/static/uploads/avatars'
+    app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'static', 'images', 'avatars')
     app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5MB max file size
     
     # Config
