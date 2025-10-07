@@ -4,16 +4,24 @@ from flask_login import LoginManager
 from dotenv import load_dotenv
 from flask_migrate import Migrate
 from flask_limiter import Limiter
+from flask_mail import Mail
 from flask_limiter.util import get_remote_address
 import os
 
 db = SQLAlchemy()
 login_manager = LoginManager()
 limiter = Limiter(key_func=get_remote_address)  # ✅ Create limiter here
-
+mail = Mail()
 def create_app():
     app = Flask(__name__)
-    
+    # Mail configuration (use your SMTP settings)
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USERNAME'] = 'your_email@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'your_app_password'  # not your Gmail password!
+    app.config['MAIL_DEFAULT_SENDER'] = ('Your App Name', 'your_email@gmail.com')
+    mail.init_app(app)
     # Load environment variables
     load_dotenv()
     

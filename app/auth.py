@@ -9,8 +9,13 @@ from app import db
 from app.model import User, Profile
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from flask_mail import Mail, Message
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 
 auth = Blueprint('auth', __name__)
+
+
+
 # Password regex: At least one letter, one number, one special character, and min length 8
 #PASSWORD_REGEX = r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&^])[A-Za-z\d@$!%*#?&^]{8,}$'
 # At least one alphabet (A-Z or a-z)
@@ -154,16 +159,61 @@ def signup():
 
 @auth.route('/forgot-password', methods=['GET', 'POST'])
 def forgot_password():
+    
     if request.method == 'POST':
         email = request.form.get('email')
         user = User.query.filter_by(email=email).first()
+
         if user:
-            # Here you would normally send an email with a reset link
-            flash('Password reset instructions have been sent to your email.', 'success')
+            # Create a secure token valid for 30 minutes
+            token = URLSafeTimedSerializer(current_app.config['SECRET_KEY']).dumps(email, salt='password-reset-salt')
+
+            reset_url = url_for('auth.reset_password', token=token, _external=True)
+
+            # Send email
+            msg = Message(
+                subject="Password Reset Request",
+                recipients=[email],
+                body=f"Hi {user.first_name},\n\nClick the link below to reset your password:\n{reset_url}\n\nIf you didn’t request this, please ignore this email."
+            )
+            mail.send(msg)
+
+            flash('Password reset link has been sent to your email.', 'success')
+            return redirect(url_for('auth.signIn'))
         else:
             flash('Email not found. Please check and try again.', 'error')
-        return redirect(url_for('auth.forgot_password'))
+
     return render_template('forgot-password.html')
+
+@auth.route('/reset-password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    try:
+        email = URLSafeTimedSerializer(current_app.config['SECRET_KEY']).loads(
+            token, salt='password-reset-salt', max_age=1800  # valid for 30 min
+        )
+    except SignatureExpired:
+        flash('The reset link has expired. Please request a new one.', 'error')
+        return redirect(url_for('auth.forgot_password'))
+    except BadSignature:
+        flash('Invalid reset link.', 'error')
+        return redirect(url_for('auth.forgot_password'))
+
+    user = User.query.filter_by(email=email).first_or_404()
+
+    if request.method == 'POST':
+        new_password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+
+        if new_password != confirm_password:
+            flash('Passwords do not match.', 'error')
+            return redirect(request.url)
+
+        user.password = generate_password_hash(new_password)
+        db.session.commit()
+        flash('Your password has been reset successfully. Please log in.', 'success')
+        return redirect(url_for('auth.signIn'))
+
+    return render_template('reset-password.html', token=token)
 
 
 
