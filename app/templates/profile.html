@@ -228,11 +228,21 @@
             </a>
 
 
-            <a href="{{url_for('auth.update_profile')}}">
+            
+            {% if current_user.is_admin %}
+            
+            <a href="{{url_for('main.manage_user')}}">
+              <div class="u-p-btn-3">
+                Manage Users
+              </div>
+            </a>
+          {% else %}
+          <a href="{{url_for('auth.update_profile')}}">
               <div class="u-p-btn-3">
                 Update Account
               </div>
             </a>
+          {% endif %}
 
         </div>
 
@@ -329,13 +339,21 @@
               </div>
             </a>
 
-
+            {% if current_user.is_admin %}
+            
+            <a href="{{url_for('main.manage_user')}}">
+              <div class="u-p-btn-3">
+                Manage Users
+              </div>
+            </a>
+          {% else %}
+          
             <a href="">
               <div class="u-p-btn-3">
                 Delete Account
               </div>
             </a>
-
+          {% endif %}
         </div>
 
         
