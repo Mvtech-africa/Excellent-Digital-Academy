@@ -8,6 +8,7 @@ from flask_mail import Mail
 from flask_limiter.util import get_remote_address
 import os
 
+
 db = SQLAlchemy()
 login_manager = LoginManager()
 limiter = Limiter(key_func=get_remote_address)  # ✅ Create limiter here
@@ -18,9 +19,9 @@ def create_app():
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USE_TLS'] = True
-    app.config['MAIL_USERNAME'] = 'your_email@gmail.com'
-    app.config['MAIL_PASSWORD'] = 'your_app_password'  # not your Gmail password!
-    app.config['MAIL_DEFAULT_SENDER'] = ('Your App Name', 'your_email@gmail.com')
+    app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+    app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+    app.config['MAIL_DEFAULT_SENDER'] = ('Excellent ICT Academy', os.environ.get('MAIL_USERNAME'))
     mail.init_app(app)
     # Load environment variables
     load_dotenv()
@@ -54,9 +55,10 @@ def create_app():
     # Register blueprints
     from .auth import auth as auth_blueprint
     from .main import main as main_blueprint
+    from .super_user import super_user as super_user_blueprint
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(main_blueprint)
-
+    app.register_blueprint(super_user_blueprint)
     return app
 
 if __name__ == "__main__":

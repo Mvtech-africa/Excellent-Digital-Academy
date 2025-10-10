@@ -15,6 +15,7 @@ class User(UserMixin, db.Model):
     password: Mapped[str] = mapped_column(String(200), nullable=False)
     phone: Mapped[str] = mapped_column(String(20), nullable=False)
     tos: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    is_admin: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
 
     # ✅ 1-to-1 relationship
     profile: Mapped[Optional["Profile"]] = relationship(back_populates="user", uselist=False)

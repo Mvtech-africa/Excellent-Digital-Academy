@@ -1,16 +1,18 @@
+{% if current_user.is_admin %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Manage Users</title>
+   <link rel="icon" href="{{ url_for('static', filename='images/ede.png' )}}" type="image/png" />
   <link rel="stylesheet" href="{{url_for('static', filename='CSS/style.css')}}">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/solid.css">
 
   <!--------------------------------LINK FOR FONT------------------------------------------------------->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-  <!------------------------------------END------------------------------------------------------->
+  <!------------------------------------END------------------------------------------------------ -->
 
 </head>
 <body>
@@ -179,17 +181,20 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>Name</th>
-        <th>Username</th>
+        <th>First Name</th>
+        <th>Last Name</th>
         <th>Email</th>
         <th>Phone</th>
-        <th>Quantity</th>
-        <th>Text input</th>
-        <th>Textarea</th>
-        <th>Option</th>
+        <th>Country</th>
+        <th>State</th>
+        <th>LGA</th>
+        <th>Bio</th>
         <th>Home address</th>
-        <th>Shipping address</th>
         <th>Role</th>
+        <th>Date of Registration</th>
+        <th>End of Program</th>
+        <th>Course</th>
+        <th>Graduation Status</th>
         <th>View</th>
         <th>Update</th>
         <th>Delete</th>
@@ -197,39 +202,51 @@
     </thead>
   
     <tbody>
+      {% for user in users %}
       
 
       <tr>
-        <td class="t-d-width-1" data-label="Id">1</td>
-        <td class="t-d-width-1" data-label="Name">Clinton</td>
-        <td class="t-d-width-1" data-label="Username">Clinton6745</td>
-        <td class="t-d-width-1" data-label="Email" class="table-image">Clinton@gmail.com</td>
-        <td class="t-d-width-1" data-label="Phone">09056433257</td>
-        <td data-label="Quantity"><input class="table-qty" type="number" value="1"></td>
-        <td data-label="Text input"><input class="table-input" type="text"></td>
-        <td data-label="Textarea"><textarea class="table-textarea"></textarea></td>
+        <td class="t-d-width-1" data-label="Id">{{user.id}}</td>
+        <td class="t-d-width-1" data-label="First Name">{{user.first_name}}</td>
+        <td class="t-d-width-1" data-label="Last Name">{{user.last_name}}</td>
+        <td class="t-d-width-1" data-label="Email" class="table-image">{{user.email}}</td>
+        <td class="t-d-width-1" data-label="Phone">{{user.phone}}</td>
+        <td data-label="Country">{{ user.profile.country_of_residence or "No country yet" }}</td>
+        <td data-label="State">{{current_user.state_of_residence or "No state yet"}}</td>
+        <td data-label="LGA">{{user.profile.lg_of_residence or "No LGA yet"}}</td>
 
 
-        <td data-label="Option">
-          <select class="table-option" name="" id="">
-            <option value="">Select option</option>
-            <option value="">Option 1</option>
-            <option value="">Option 2</option>
-            <option value="">Option 3</option>
-          </select>
-        </td>
+    
 
-        <td class="t-d-width-2" data-label="Home address"><p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur explicabo impedit enim incidunt, deserunt minima eum, quod hic magni, numquam laboriosam reprehenderit natus ratione fugit quia officiis optio pariatur nisi? Officia </p></td>
+        <td class="t-d-width-2" data-label="Bio">{{user.profile.bio or "No bio yet"}}</td>
         
-        <td class="t-d-width-2" data-label="Shipping address"><p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur explicabo impedit enim incidunt, deserunt minima eum, quod hic magni, numquam laboriosam reprehenderit natus ratione fugit quia officiis optio pariatur nisi? Officia </p></td>
+        <td class="t-d-width-2" data-label="">{{user.profile.address or "No address yet"}}</td>
+        {% if user.is_admin %}
         <td class="t-d-width-1" data-label="User role">Admin</td>
-
-        <td data-label="Update"><button class="table-button btn-bg-blue"><a href="payment-conclusion.html">Veiw</a></button></td>
+        {%else%}
+        <td class="t-d-width-1" data-label="User role">User</td>
+        {%  endif %}
+        
+        <td class="t-d-width-1" data-label="Reg date">{{user.profile.reg_date or 'Not enrolled'}}</td>
+        <td class="t-d-width-1" data-label="End date">{{user.profile.end_date or 'Not enrolled'}}</td>
+        <td class="t-d-width-1" data-label="Course">{{user.profile.end_date or 'Not enrolled'}}</td>
+        <td class="t-d-width-1" data-label="Grad Status">{{user.profile.end_date or 'Not Graduated'}}</td>
+        
+        <td data-label="Update"><button class="table-button btn-bg-blue"><a href="{{ url_for('main.view_profile', user_id=user.id) }}">Veiw</a></button></td>
 
         <td data-label="Update"><button class="table-button btn-bg-green"><a href="payment-conclusion.html">Update</a></button></td>
 
-        <td data-label="Delete"><button class="table-button btn-bg-red"><a href="sign-in.html">Delete</a></button></td>
+        <td data-label="Delete">
+  <form action="{{ url_for('auth.delete_user', user_id=user.id) }}" method="POST" style="display:inline;">
+    <button type="submit" class="table-button btn-bg-red"
+            onclick="return confirm('Are you sure you want to delete this user?');">
+      Delete
+    </button>
+  </form>
+</td>
+
       </tr>
+      {% endfor %}
   
 
 
@@ -321,3 +338,39 @@
 <script src="{{url_for('static', filename='js/side-bar.js')}}"></script>
 </body>
 </html>
+{% else %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='CSS/style.css')}}">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/solid.css">
+
+  <!--------------------------------LINK FOR FONT------------------------------------------------------->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <!------------------------------------END------------------------------------------------------ -->
+
+</head>
+<body>
+
+<!-- --------------------------footer-------------------------------- -->
+
+
+<!-- --------------------------copy rights------------------------------- -->
+
+<section class="copy-ryt">
+  <p>&copy <span id="year"></span>, Excellent Digital Express ICT Academy </p>
+</section>
+
+
+
+
+
+
+<script src="{{url_for('static', filename='js/side-bar.js')}}"></script>
+</body>
+</html>
+{%endif%}
