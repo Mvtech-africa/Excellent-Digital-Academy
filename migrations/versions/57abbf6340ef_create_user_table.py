@@ -1,8 +1,8 @@
 """create User table
 
-Revision ID: 151bc289746b
+Revision ID: 57abbf6340ef
 Revises: 
-Create Date: 2025-10-06 18:51:58.664988
+Create Date: 2025-10-09 14:59:07.862480
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '151bc289746b'
+revision = '57abbf6340ef'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -26,6 +26,7 @@ def upgrade():
     sa.Column('password', sa.String(length=200), nullable=False),
     sa.Column('phone', sa.String(length=20), nullable=False),
     sa.Column('tos', sa.Boolean(), nullable=False),
+    sa.Column('is_admin', sa.Boolean(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
@@ -33,12 +34,13 @@ def upgrade():
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('bio', sa.String(length=500), nullable=True),
     sa.Column('avatar_url', sa.String(length=200), nullable=True),
-    sa.Column('state_of_origin', sa.String(length=500), nullable=True),
+    sa.Column('country_of_origin', sa.String(length=200), nullable=True),
+    sa.Column('state_of_origin', sa.String(length=200), nullable=True),
     sa.Column('lg_of_origin', sa.String(length=200), nullable=True),
-    sa.Column('country_of_origin', sa.String(length=500), nullable=True),
+    sa.Column('country_of_residence', sa.String(length=200), nullable=True),
     sa.Column('state_of_residence', sa.String(length=200), nullable=True),
     sa.Column('lg_of_residence', sa.String(length=200), nullable=True),
-    sa.Column('country_of_residence', sa.String(length=500), nullable=True),
+    sa.Column('address', sa.String(length=500), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id'),

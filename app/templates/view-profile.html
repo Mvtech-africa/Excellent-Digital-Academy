@@ -132,12 +132,12 @@
 
 <div class="dash-b-head-con container-1">
 
-  <h1 class="">Welcome {{current_user.first_name}}</h1>
+  <h1 class="">Welcome {{user.first_name}}</h1>
 
     <div class="delete-all">
       <a class="btn-564" href="{{url_for('main.index')}}">Home<span><i class="uil uil-angle-right"></i></span></a>
       <a class="btn-564" href="{{url_for('main.Profile')}}">Profile<span><i class="uil uil-angle-right"></i></span></a>
-      {% if not current_user.is_authenticated or current_user.is_admin %}
+      {% if not user.is_authenticated or user.is_admin %}
       <a class="del-btn-3" href="{{url_for('auth.logout')}}">
         <div class="d-b-h-btn">Logout</div>
       </a>
@@ -154,7 +154,7 @@
 
 
 
-{% if current_user.is_authenticated and not current_user.profile.avatar_url %}
+{% if user.is_authenticated and not user.profile.avatar_url %}
 
 <!-- -----------------   Profile section  -------------------------- -->
 
@@ -169,7 +169,7 @@
       <div class="u-p-con-1">
 
         <div class="u-p-image">
-          <img src="{{current_user.profile.avatar_url}}" alt="">
+          <img src="{{user.profile.avatar_url}}" alt="">
         </div>
 
       </div> 
@@ -190,26 +190,26 @@
 
         <div class="u-p-detail-con">
           <h3>Name:</h3>
-          <p>{{current_user.first_name }} {{current_user.last_name}}</p>
+          <p>{{user.first_name }} {{user.last_name}}</p>
         </div>
 
 
         <div class="u-p-detail-con">
           <h3>Email:</h3>
-          <p>{{current_user.email}}</p>
+          <p>{{user.email}}</p>
         </div>
 
 
 
         <div class="u-p-detail-con">
           <h3>Phone Number:</h3>
-          <p>{{current_user.phone}}</p>
+          <p>{{user.phone}}</p>
         </div>
 
 
         <div class="u-p-detail-con">
           <h3>Address:</h3>
-          <p>{{current_user.profile.bio}}.</p>
+          <p>{{user.profile.bio}}.</p>
         </div>
             
 
@@ -247,112 +247,9 @@
     </div>
   </div>
 </section>
-{% elif current_user.is_authenticated and  current_user.profile.avatar_url %}
-
-<!-- -----------------   Profile section  -------------------------- -->
-
-<section class="user-profile container-1">
-  <div class="u-p-bg-con">
-    <div class="u-p-main-con">
 
 
-
-
-
-      <div class="u-p-con-1">
-
-        <div class="u-p-image">
-          {% if profile.avatar_url %}
-          <img src="{{ url_for('static', filename='images/avatars/' ~ profile.avatar_url) }}" 
-          alt="Profile picture" width="150">
-          {% else %}
-          <img src="{{ url_for('static', filename='images/default-avatar.png') }}" 
-          alt="Default avatar" width="150">
-          {% endif %}
-
-        </div>
-        {% if current_user.enrolled %}
-        {% for course in courses %}
-        <a href="#">{{course}}</a>
-        {% endfor %}
-        {%  endif  %}
-        
-
-      </div>
-
-
-
-
-
-
-
-
-      <div class="u-p-con-2">
-
-        <div class="u-p-detail-con">
-          <h3>Name:</h3>
-          <p>{{current_user.first_name }} {{current_user.last_name}}</p>
-        </div>
-
-
-        <div class="u-p-detail-con">
-          <h3>Email:</h3>
-          <p>{{current_user.email}}</p>
-        </div>
-
-
-
-        <div class="u-p-detail-con">
-          <h3>Phone Number:</h3>
-          <p>{{current_user.phone}}</p>
-        </div>
-
-
-        <div class="u-p-detail-con">
-          <h3>Address:</h3>
-          <p>{{current_user.profile.address}}.</p>
-        </div>
-            
-
-
-        <div class="u-p-btn-main-con">
-
-          <a href="">
-            <div class="u-p-btn-1">
-              Edit profile
-            </div>
-          </a>
-
-            <a href="">
-              <div class="u-p-btn-2">
-                Change Password
-              </div>
-            </a>
-
-
-            <a href="">
-              <div class="u-p-btn-3">
-                Delete Account
-              </div>
-            </a>
-
-        </div>
-
-        
-      </div>
-      
-
-
-
-
-
-    </div>
-  </div>
-</section>
 {% endif %}
-
-
-
 
 
 

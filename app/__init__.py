@@ -4,16 +4,25 @@ from flask_login import LoginManager
 from dotenv import load_dotenv
 from flask_migrate import Migrate
 from flask_limiter import Limiter
+from flask_mail import Mail
 from flask_limiter.util import get_remote_address
 import os
+
 
 db = SQLAlchemy()
 login_manager = LoginManager()
 limiter = Limiter(key_func=get_remote_address)  # ✅ Create limiter here
-
+mail = Mail()
 def create_app():
     app = Flask(__name__)
-    
+    # Mail configuration (use your SMTP settings)
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+    app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+    app.config['MAIL_DEFAULT_SENDER'] = ('Excellent ICT Academy', os.environ.get('MAIL_USERNAME'))
+    mail.init_app(app)
     # Load environment variables
     load_dotenv()
     
@@ -46,9 +55,10 @@ def create_app():
     # Register blueprints
     from .auth import auth as auth_blueprint
     from .main import main as main_blueprint
+    from .super_user import super_user as super_user_blueprint
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(main_blueprint)
-
+    app.register_blueprint(super_user_blueprint)
     return app
 
 if __name__ == "__main__":

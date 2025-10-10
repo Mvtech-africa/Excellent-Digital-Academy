@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash,current_app
 from flask_login import login_user, logout_user, login_required, current_user
+from sqlalchemy.exc import SQLAlchemyError
 import re
 import os
 from werkzeug.utils import secure_filename
@@ -9,8 +10,13 @@ from app import db
 from app.model import User, Profile
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from flask_mail import Mail, Message
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 
 auth = Blueprint('auth', __name__)
+
+
+mail = Mail()
 # Password regex: At least one letter, one number, one special character, and min length 8
 #PASSWORD_REGEX = r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&^])[A-Za-z\d@$!%*#?&^]{8,}$'
 # At least one alphabet (A-Z or a-z)
@@ -31,6 +37,7 @@ limiter = Limiter(
     app=None,  # Will be set when blueprint is registered
     storage_uri="memory://"
 )
+
 
 
 # Upload config
@@ -68,8 +75,9 @@ def signIn():
         if user and check_password_hash(user.password, password):
             login_user(user)
             next_page = request.args.get('next')
-            flash('Login successful!', 'success')  # ✅ Fixed
+            #flash('Login successful!', 'success')  # ✅ Fixed
             return redirect(next_page or url_for('main.Profile'))
+           
             
         else:
             flash('Invalid email or password. Please try again.', 'error')
@@ -154,16 +162,66 @@ def signup():
 
 @auth.route('/forgot-password', methods=['GET', 'POST'])
 def forgot_password():
+    
     if request.method == 'POST':
         email = request.form.get('email')
         user = User.query.filter_by(email=email).first()
+
         if user:
-            # Here you would normally send an email with a reset link
-            flash('Password reset instructions have been sent to your email.', 'success')
+            # Create a secure token valid for 30 minutes
+            token = URLSafeTimedSerializer(current_app.config['SECRET_KEY']).dumps(email, salt='password-reset-salt')
+
+            reset_url = url_for('auth.reset_password', token=token, _external=True)
+
+            # Send email
+            msg = Message(
+                subject="Password Reset Request",
+                recipients=[email],
+                body=f"Hi {user.first_name},\n\nClick the link below to reset your password:\n{reset_url}\n\nIf you didn’t request this, please ignore this email."
+            )
+            print(msg)
+            mail.send(msg)
+
+            flash('Password reset link has been sent to your email.', 'success')
+            return redirect(url_for('auth.signIn'))
         else:
             flash('Email not found. Please check and try again.', 'error')
-        return redirect(url_for('auth.forgot_password'))
+
     return render_template('forgot-password.html')
+
+@auth.route('/reset-password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    try:
+        email = URLSafeTimedSerializer(current_app.config['SECRET_KEY']).loads(
+            token, salt='password-reset-salt', max_age=3600  # valid for 30 min
+        )
+    except SignatureExpired:
+        flash('The reset link has expired. Please request a new one.', 'error')
+        return redirect(url_for('auth.forgot_password'))
+    except BadSignature:
+        flash('Invalid reset link.', 'error')
+        return redirect(url_for('auth.forgot_password'))
+
+    user = User.query.filter_by(email=email).first_or_404()
+
+    if request.method == 'POST':
+        new_password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+
+        if new_password != confirm_password:
+            flash('Passwords do not match.', 'error')
+            return redirect(request.url)
+        
+        if new_password == user.password:
+            flash("You can't use your old password again!")
+            return render_template('reset-password.html')
+
+        user.password = generate_password_hash(new_password)
+        db.session.commit()
+        flash('Your password has been reset successfully. Please log in.', 'success')
+        return redirect(url_for('auth.signIn'))
+
+    return render_template('reset-password.html', token=token)
 
 
 
@@ -240,10 +298,31 @@ def update_profile():
     return redirect(url_for('main.Profile'))
 
 
+
+@auth.route('/delete_user/<int:user_id>', methods=['POST'])
+def delete_user(user_id):
+    user = User.query.get(user_id)
+    
+    if not user:
+        flash(f"User with ID {user_id} not found.", "error")
+        return redirect(url_for('main.manage_user'))  # Redirect back to users list
+
+    try:
+        db.session.delete(user)
+        db.session.commit()
+        flash(f"User {user.first_name} has been deleted successfully.", "success")
+    except SQLAlchemyError as e:
+        db.session.rollback()
+        flash(f"An error occurred while deleting the user: {str(e)}", "error")
+
+    return redirect(url_for('main.manage_user'))
+
+
+
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
-    flash('You have been logged out.', 'info')
+    flash('You have been logged out.', 'success')
     return redirect(url_for('auth.signIn'))
 
