@@ -479,6 +479,8 @@ slider.addEventListener('mouseleave', () => scrollInterval = setInterval(autoScr
         velocity = track.scrollLeft - prev;
       });
 
+
+      
       function stopDrag(e){
         if(!isDown) return;
         isDown = false;
@@ -493,6 +495,8 @@ slider.addEventListener('mouseleave', () => scrollInterval = setInterval(autoScr
         };
         rafId = requestAnimationFrame(step);
       }
+
+
       track.addEventListener('pointerup', stopDrag);
       track.addEventListener('pointercancel', stopDrag);
       track.addEventListener('pointerleave', stopDrag);

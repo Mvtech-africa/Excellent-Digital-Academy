@@ -611,7 +611,8 @@ header {
   border-radius: 30px;
   overflow: hidden;
   animation: h-animate 3s ease infinite;
-  /* border: 10px solid var(--primary-color-400); */
+  border: 10px solid var(--primary-color-300);
+  box-shadow: 0 0 20px 10px rgba(0, 102, 244, 0.145);
 }
 
 @keyframes h-animate {
@@ -767,7 +768,7 @@ header {
 }
 
 .why-image {
-  border-radius: 30px;
+  border-radius: 10px;
   height: 320px;
   width: 100%;
   overflow: hidden;
@@ -857,10 +858,29 @@ header {
   color: var(--text-color-1);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ------------------------------- Courses styling ---------------------------- */
 
 .carousel-main-con {
   display: flex;
+  flex-direction: column;
+  gap: 40px;
   align-items: center;
   justify-content: center;
   padding: 80px 20px;
@@ -893,9 +913,30 @@ header {
   transition: transform 0.3s;
 }
 
+
+.c-p-con-2 {
+  display: flex;
+  gap: 10px;
+}
+
+
+.c-p-con-2 .s-p-2 {
+  font-size: var(--font-20);
+  color: var(--primary-color-600);
+  text-decoration: line-through;
+}
+
+
+
+.c-p-con-2 .r-p-2 {
+  font-size: var(--font-20);
+}
+
+
 .carousel-item:hover {
   transform: translateY(-5px);
 }
+
 
 .carousel-item img {
   width: 100%;
@@ -1140,6 +1181,10 @@ h1 {
     padding: 0 12px;
   }
 }
+
+
+
+
 
 
 
@@ -1690,9 +1735,11 @@ footer {
 
 
 .table-con th {
+  background-color: var(--grey-bg-color);
+  color: var(--text-color-7);
+  white-space: nowrap;
   padding: 14px 19px 14px 19px;
   font-size: 14px;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -1703,7 +1750,6 @@ footer {
   color: var(--text-color-5);
   padding: 19px;
 }
-
 
 
 
@@ -1718,11 +1764,6 @@ footer {
 
 
 
-.table-con th {
-  background-color: var(--grey-bg-color);
-  color: var(--text-color-7);
-  white-space: wrap;
-}
 
 
 
@@ -2005,6 +2046,15 @@ footer {
 
 
 
+
+
+
+
+
+
+
+
+
 /* -------------------------------- user courses ------------------------------------ */
 
 .user-course {
@@ -2027,7 +2077,7 @@ footer {
 
 
 .user-c-con {
-  border-radius: 30px;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 100%;
   transition: 0.4s ease;
@@ -2040,7 +2090,7 @@ footer {
 
 
 .user-c-image {
-  border-radius: 30px 30px 0 0;
+  border-radius: 10px 10px 0 0;
   height: 170px;
   width: 100%;
   overflow: hidden;
@@ -2060,6 +2110,23 @@ footer {
 .user-c-detail {
   padding: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
