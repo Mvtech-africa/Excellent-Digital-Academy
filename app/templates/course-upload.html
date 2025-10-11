@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Upload</title>
+    <link rel="icon" href="../static/images/ede.png" type="image/png" />
+    <link rel="stylesheet" href="../static/CSS/style.css" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+  </head>
+  <body>
+
+
+    
+    <!-- ------------------------------Sign up Section ------------------------------------- -->
+
+    <section class="form add-margin">
+    <div class="form-main-con">
+  {% with messages = get_flashed_messages(with_categories=True) %}
+  {% for category, message in messages %}
+    {% if message %}
+      <div class="message {{ category }}">
+        {{ message }}
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endwith %}
+
+
+
+<form class="form-con" action="" method="POST">
+
+
+  <div class="input-group">
+     <label for="address">Intro video</label>
+    <input type="file"  required>
+  </div>
+
+
+
+    <div class="input-group">
+        <label for="address">Cover Picture</label>
+        <input type="file"  required>
+    </div>
+
+
+    <div class="input-group">
+        <label for="address">Title</label>
+        <input type="text" placeholder="Title" required>
+    </div>
+
+
+
+    <div class="input-group">
+        <label for="address">Description</label>
+        <textarea placeholder="Description"></textarea>
+    </div>
+
+
+    <div class="input-group">
+        <label for="address">Number of Topics</label>
+        <textarea placeholder="Number of Topics"></textarea>
+    </div>
+
+
+    
+    <div class="input-group">
+        <label for="address">Regular Price</label>
+        <input type="text" placeholder="Regular Price" required>
+    </div>
+
+
+
+  <div class="input-group">
+    <label for="address">Sales Price</label>
+    <input type="text" placeholder="Sales Price" required>
+  </div>
+
+
+  <div class="input-group">
+    <label for="address">Intructor</label>
+    <input type="text" placeholder="Intructor" required>
+  </div>
+
+
+  
+
+
+  
+  <button type="submit">Upload course</button>
+</form>
+
+       
+    </div>
+    
+    </section>
+
+
+
+
+
+    <script src="{{url_for('static',  filename='JS/main.js')}}"></script>
+  </body>
+</html>

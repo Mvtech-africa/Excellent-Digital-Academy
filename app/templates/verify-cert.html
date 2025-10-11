@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="icon" href="../static/images/ede.png" type="image/png" />
+    <link rel="stylesheet" href="../static/CSS/style.css" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+  </head>
+  <body>
+
+
+    
+    <!-- ------------------------------Sign up Section ------------------------------------- -->
+
+    <section class="form remove-margin">
+    <div class="form-main-con">
+  {% with messages = get_flashed_messages(with_categories=True) %}
+  {% for category, message in messages %}
+    {% if message %}
+      <div class="message {{ category }}">
+        {{ message }}
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endwith %}
+
+
+
+<div class="form-logo">
+    <img src="../static/images/ede.png" alt="">
+</div>
+
+<div class="cert-title">
+  <h5>Login With Student Certificate Number</h5>
+</div> 
+
+<form class="form-con" action="" method="POST">
+
+  <div class="input-group">
+    <input type="text" placeholder="Enter Certificate Number" required>
+  </div>
+  
+ 
+  <button type="submit">Verify</button>
+
+  
+</form>
+
+    </div>
+    
+    </section>
+
+
+
+
+
+    <script src="{{url_for('static',  filename='JS/main.js')}}"></script>
+  </body>
+</html>

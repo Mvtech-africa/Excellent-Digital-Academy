@@ -38,8 +38,56 @@ def manage_user():
 def Dashboard():
     return render_template('dashboard.html')  
 
+
+
 @main.route('/viewcourse')
 @login_required 
 def Viewcourse():
     return render_template('view-course.html')     
 
+
+
+
+
+@main.route('/courseupload')
+def Courseupload():
+    return render_template('course-upload.html') 
+
+
+
+@main.route('/updatecourse')
+def Updatecourse():
+    return render_template('update-course.html') 
+
+
+    
+
+@main.route('/verifycert')
+def Verifycert():
+    return render_template('verify-cert.html') 
+
+
+
+
+@main.route('/addcontent')
+def Addcontent():
+    return render_template('add-content.html') 
+
+
+
+    
+@main.route('/addcontenttitle')
+def Addcontenttitle():
+    return render_template('add-c-title.html') 
+
+
+
+@main.route('/certprofile')
+def Certprofile():
+    return render_template('cert-profile.html') 
+
+
+
+@main.route('/viewcert')
+def viewcert():
+    return render_template('view-cert.html') 
