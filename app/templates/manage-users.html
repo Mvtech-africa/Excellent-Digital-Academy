@@ -1,4 +1,4 @@
-{% if current_user.is_admin %}
+{% if current_user.role == Role.ADMIN %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -214,19 +214,21 @@
         <td data-label="Country">{{ user.profile.country_of_residence or "No country yet" }}</td>
         <td data-label="State">{{current_user.state_of_residence or "No state yet"}}</td>
         <td data-label="LGA">{{user.profile.lg_of_residence or "No LGA yet"}}</td>
-
-
-    
-
         <td class="t-d-width-2" data-label="Bio">{{user.profile.bio or "No bio yet"}}</td>
-        
-        <td class="t-d-width-2" data-label="">{{user.profile.address or "No address yet"}}</td>
-        {% if user.is_admin %}
-        <td class="t-d-width-1" data-label="User role">Admin</td>
-        {%else%}
-        <td class="t-d-width-1" data-label="User role">User</td>
-        {%  endif %}
-        
+        <td data-label="Address">{{user.profile.address or "No Address yet"}}</td>
+ <td data-label="User role">
+  <span id="role-text-{{ user.id }}">
+    {% if user.role == Role.ADMIN %}
+      Admin
+    {% elif user.role == Role.SUBADMIN %}
+      Instructor
+    {% else %}
+      User
+    {% endif %}
+  </span>
+</td>
+
+
         <td class="t-d-width-1" data-label="Reg date">{{user.profile.reg_date or 'Not enrolled'}}</td>
         <td class="t-d-width-1" data-label="End date">{{user.profile.end_date or 'Not enrolled'}}</td>
         <td class="t-d-width-1" data-label="Course">{{user.profile.end_date or 'Not enrolled'}}</td>
@@ -234,7 +236,17 @@
         
         <td data-label="Update"><button class="table-button btn-bg-blue"><a href="{{ url_for('main.view_profile', user_id=user.id) }}">Veiw</a></button></td>
 
-        <td data-label="Update"><button class="table-button btn-bg-green"><a href="payment-conclusion.html">Update</a></button></td>
+     <td data-label="Update Role">
+  <select class="role-select" data-user-id="{{ user.id }}">
+    <option disable selected>Change Role</option>
+    <option value="user" {% if user.role == 'user' %}selected{% endif %}>User</option>
+    <option value="sub_admin" {% if user.role == 'sub_admin' %}selected{% endif %}>Instructor</option>
+    <!--<option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>-->
+  </select>
+</td>
+
+
+
 
         <td data-label="Delete">
   <form action="{{ url_for('auth.delete_user', user_id=user.id) }}" method="POST" style="display:inline;">
@@ -327,15 +339,42 @@
 <!-- --------------------------copy rights------------------------------- -->
 
 <section class="copy-ryt">
-  <p>&copy <span id="year"></span>, Excellent Digital Express ICT Academy </p>
+  <p>&copy; <span id="year"></span>, Excellent Digital Express ICT Academy </p>
 </section>
+<script>
+document.querySelectorAll('.role-select').forEach(select => {
+  select.addEventListener('change', async (e) => {
+    const userId = e.target.dataset.userId;
+    const newRole = e.target.value;
+
+    try {
+      const res = await fetch(`/update_role/${userId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: newRole })
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.error || "Update failed");
+      } else {
+        alert(`✅ Role updated to ${data.role}`);
+        document.getElementById(`role-text-${userId}`).textContent =
+          newRole === 'admin' ? 'Admin' :
+          newRole === 'sub_admin' ? 'Instructor' : 'User';
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      alert("Could not update role.");
+    }
+  });
+});
+</script>
 
 
-
-
-
-
+<script src="{{url_for('static', filename='js/main2.js')}}"></script>
 <script src="{{url_for('static', filename='js/side-bar.js')}}"></script>
+
 </body>
 </html>
 {% else %}
@@ -362,14 +401,14 @@
 <!-- --------------------------copy rights------------------------------- -->
 
 <section class="copy-ryt">
-  <p>&copy <span id="year"></span>, Excellent Digital Express ICT Academy </p>
+  <p>&copy; <span id="year"></span>, Excellent Digital Express ICT Academy </p>
 </section>
 
 
 
 
 
-
+<script src="{{url_for('static', filename='js/main2.js')}}"></script>
 <script src="{{url_for('static', filename='js/side-bar.js')}}"></script>
 </body>
 </html>

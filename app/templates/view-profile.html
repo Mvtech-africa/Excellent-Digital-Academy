@@ -136,7 +136,7 @@
 
     <div class="delete-all">
       <a class="btn-564" href="{{url_for('main.index')}}">Home<span><i class="uil uil-angle-right"></i></span></a>
-      <a class="btn-564" href="{{url_for('main.Profile')}}">Profile<span><i class="uil uil-angle-right"></i></span></a>
+      <a class="btn-564" href="{{url_for('main.view_profile', user_id=user.id)}}">Profile<span><i class="uil uil-angle-right"></i></span></a>
       {% if not user.is_authenticated or user.is_admin %}
       <a class="del-btn-3" href="{{url_for('auth.logout')}}">
         <div class="d-b-h-btn">Logout</div>
@@ -428,7 +428,7 @@
 <!-- --------------------------copy rights------------------------------- -->
 
 <section class="copy-ryt">
-  <p>&copy <span id="year"></span>, C . Tech etc - HTML CSS Ecommerce Template</p>
+  <p>&copy; <span id="year"></span>, C . Tech etc - HTML CSS Ecommerce Template</p>
 </section>
 
 

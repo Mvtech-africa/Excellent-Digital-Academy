@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 import logging
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
-from app.model import User, Profile
+from app.model import User, Profile, Role
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_mail import Mail, Message
@@ -76,7 +76,7 @@ def signIn():
             login_user(user)
             next_page = request.args.get('next')
             #flash('Login successful!', 'success')  # ✅ Fixed
-            return redirect(next_page or url_for('main.Profile'))
+            return redirect(next_page or url_for('main.profile'))
            
             
         else:
@@ -137,12 +137,13 @@ def signup():
 
         # Create new userS
         new_user = User(
-            first_name=first_name,
-            last_name=last_name,
-            email=email,
-            password=generate_password_hash(password),
-            phone=phone,
-            tos=tos  # ✅ Save to DB
+        first_name=first_name,
+        last_name=last_name,
+        email=email,
+        password=generate_password_hash(password),
+        phone=phone,
+        tos=tos,
+        role=Role.USER  # ✅ default user role
         )
 
         try:
@@ -295,7 +296,7 @@ def update_profile():
         logging.error("Error updating profile: %s", e)
         flash(f'❌ An error occurred while updating your profile: {e}', 'error')
 
-    return redirect(url_for('main.Profile'))
+    return redirect(url_for('main.profile'))
 
 
 

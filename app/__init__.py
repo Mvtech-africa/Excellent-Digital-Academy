@@ -55,10 +55,13 @@ def create_app():
     # Register blueprints
     from .auth import auth as auth_blueprint
     from .main import main as main_blueprint
+    from .course import course as course_blueprint
     from .super_user import super_user as super_user_blueprint
     app.register_blueprint(auth_blueprint)
+    app.register_blueprint(course_blueprint)
     app.register_blueprint(main_blueprint)
     app.register_blueprint(super_user_blueprint)
+    
     return app
 
 if __name__ == "__main__":

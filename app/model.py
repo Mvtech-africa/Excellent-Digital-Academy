@@ -4,6 +4,13 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Integer, String, Boolean, ForeignKey, Date, Float
 from typing import Optional,  List
 from datetime import date
+from sqlalchemy import Enum
+import enum
+
+class Role(enum.Enum):
+    USER = "user"
+    SUBADMIN = "sub_admin"
+    ADMIN = "admin"
 
 
 class User(UserMixin, db.Model):
@@ -16,8 +23,7 @@ class User(UserMixin, db.Model):
     password: Mapped[str] = mapped_column(String(200), nullable=False)
     phone: Mapped[str] = mapped_column(String(20), nullable=False)
     tos: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
-    is_admin: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
-
+    role: Mapped[Role] = mapped_column(Enum(Role), default=Role.USER, nullable=False)
     # ✅ 1-to-1 relationship
     profile: Mapped[Optional["Profile"]] = relationship(
     back_populates="user",
@@ -67,16 +73,14 @@ class Course(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     title: Mapped[str] = mapped_column(String(200), nullable=False)
     description: Mapped[Optional[str]] = mapped_column(String(1000), nullable=True)
+    cover_photo: Mapped[Optional[str]] = mapped_column(String(1000), nullable=False)
     content: Mapped[Optional[str]] = mapped_column(String(5000), nullable=True)
     instructor_name: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)  # renamed ✅
     duration: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
     level: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
     price: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
     date_enrolled: Mapped[Optional[date]] = mapped_column(Date, nullable=True)
-    end_date: Mapped[Optional[date]] = mapped_column(Date, nullable=True)
-    is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
-    is_ended: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
-
+    
     instructor_id: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=False)
     instructor: Mapped["User"] = relationship(back_populates="courses")  # keep this name ✅
 

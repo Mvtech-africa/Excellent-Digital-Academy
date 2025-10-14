@@ -136,8 +136,9 @@
 
     <div class="delete-all">
       <a class="btn-564" href="{{url_for('main.index')}}">Home<span><i class="uil uil-angle-right"></i></span></a>
-      <a class="btn-564" href="{{url_for('main.Profile')}}">Profile<span><i class="uil uil-angle-right"></i></span></a>
-      {% if not current_user.is_authenticated or current_user.is_admin %}
+      <a class="btn-564" href="{{url_for('main.profile')}}">Profile<span><i class="uil uil-angle-right"></i></span></a>
+      {% if not current_user.is_authenticated or current_user.role == Role.ADMIN %}
+
       <a class="del-btn-3" href="{{url_for('auth.logout')}}">
         <div class="d-b-h-btn">Logout</div>
       </a>
@@ -229,7 +230,7 @@
 
 
             
-            {% if current_user.is_admin %}
+            {% if current_user.role == Role.ADMIN %}
             
             <a href="{{url_for('main.manage_user')}}">
               <div class="u-p-btn-3">
@@ -320,7 +321,7 @@
 
         <div class="u-p-detail-con">
           <h3>Address:</h3>
-          <p>{{current_user.profile.address}}.</p>
+          <p>{{current_user.profile.address}}</p>
         </div>
             
 
@@ -549,7 +550,7 @@
 <!-- --------------------------copy rights------------------------------- -->
 
 <section class="copy-ryt">
-  <p>&copy <span id="year"></span>, C . Tech etc - HTML CSS Ecommerce Template</p>
+  <p>&copy; <span id="year"></span>, C . Tech etc - HTML CSS Ecommerce Template</p>
 </section>
 
 

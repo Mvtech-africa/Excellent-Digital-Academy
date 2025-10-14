@@ -1,6 +1,6 @@
  {% extends "./base/base.html" %} 
     {% block head %}
-      <title>Excellent Ict Academy</title>
+      <title>Excellent Ict Academy </title>
     {% endblock head %}
 
     {% block content %}
@@ -14,7 +14,7 @@
 
         <div class="hero-detail">
           <h1>Learn Trending Tech Skills today with Excellent digital express ict academy</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi illum molestias tenetur rem harum porro nesciunt ratione, consequuntur molestiae provident.</p>
+          <p>{{current_user.is_admin}}Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi illum molestias tenetur rem harum porro nesciunt ratione, consequuntur molestiae provident.</p>
 
           <div class="hero-btn-con">
 
